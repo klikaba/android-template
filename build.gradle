@@ -17,6 +17,10 @@ buildscript {
 
         // AndroidX
         appCompatVersion = '1.0.0'
+        androidAnnotationVersion = '1.0.0'
+        recyclerViewVersion = '1.0.0'
+        googleMaterialVersion = '1.0.0'
+        androidLifecycleVersion = '2.0.0'
         constraintLayoutVersion = '2.0.0-alpha2'
         archComponentsVersion = '2.0.0-rc01'
         navigationVersion = '1.0.0-alpha06'

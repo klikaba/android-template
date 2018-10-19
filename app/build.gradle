@@ -29,16 +29,16 @@ dependencies {
 
     // AndroidX
     kapt "com.android.databinding:compiler:$buildToolsVersion"
-    kapt "androidx.lifecycle:lifecycle-compiler:$archComponentsVersion"
+    kapt "androidx.lifecycle:lifecycle-compiler:$androidLifecycleVersion"
     implementation "androidx.appcompat:appcompat:$appCompatVersion"
     implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
-    implementation "androidx.annotation:annotation:$appCompatVersion"
+    implementation "androidx.annotation:annotation:$androidAnnotationVersion"
     implementation "android.arch.navigation:navigation-fragment-ktx:$navigationVersion"
     implementation "android.arch.navigation:navigation-ui-ktx:$navigationVersion"
-    implementation "androidx.recyclerview:recyclerview:$appCompatVersion"
-    implementation "com.google.android.material:material:$appCompatVersion"
-    implementation "androidx.lifecycle:lifecycle-extensions:$archComponentsVersion"
-    implementation "androidx.lifecycle:lifecycle-reactivestreams:$archComponentsVersion"
+    implementation "androidx.recyclerview:recyclerview:$recyclerViewVersion"
+    implementation "com.google.android.material:material:$googleMaterialVersion"
+    implementation "androidx.lifecycle:lifecycle-extensions:$androidLifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-reactivestreams:$androidLifecycleVersion"
 
     // Reactive
     implementation "io.reactivex.rxjava2:rxjava:$rxJava2Version"
