@@ -8,7 +8,7 @@ import ba.klika.androidtemplate.ui.base.viewmodel.BaseViewModel
  *
  * @author Ensar Sarajčić <ensar.sarajcic@klika.ba>.
  */
-interface BoundView<out VIEW_MODEL_TYPE : BaseViewModel> {
+interface BoundView<VIEW_MODEL_TYPE : BaseViewModel> {
     /**
      * Provides layout id of this view
      */
@@ -21,10 +21,16 @@ interface BoundView<out VIEW_MODEL_TYPE : BaseViewModel> {
     val viewModelNameRId: Int
 
     /**
-     * Provides viewmodel of this activity
-     * ViewModel should be injected into the activity and returned from this method
+     * Provides viewmodel of this view
+     * ViewModel will be injected into the view and returned from this method
      */
-    val viewModel: VIEW_MODEL_TYPE
+    var viewModel: VIEW_MODEL_TYPE
+
+    /**
+     * Provides class of this views ViewModel
+     * This is required to properly inject the ViewModel
+     */
+    val viewModelClass: Class<VIEW_MODEL_TYPE>
 
     /**
      * Invoked once everything is ready

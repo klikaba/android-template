@@ -3,17 +3,23 @@ package ba.klika.androidtemplate.ui.base.view
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import ba.klika.androidtemplate.ui.base.viewmodel.BaseViewModel
 import dagger.android.support.DaggerAppCompatActivity
+import javax.inject.Inject
 
 /**
  * Base activity for all activities
  * @author Ensar Sarajčić <ensar.sarajcic@klika.ba>.
  */
-abstract class BaseActivity<out VIEW_MODEL_TYPE : BaseViewModel>
+abstract class BaseActivity<VIEW_MODEL_TYPE : BaseViewModel>
     : DaggerAppCompatActivity(), BoundView<VIEW_MODEL_TYPE> {
 
     private lateinit var viewDataBinding: ViewDataBinding
+
+    @Inject
+    protected lateinit var viewModelFactory: ViewModelProvider.Factory
 
     /**
      * Handles intents, injects lifecycle delegates and updates them
@@ -23,6 +29,8 @@ abstract class BaseActivity<out VIEW_MODEL_TYPE : BaseViewModel>
         super.onCreate(savedInstanceState)
 
         doInjections()
+
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(viewModelClass)
 
         viewDataBinding = DataBindingUtil.setContentView<ViewDataBinding>(this, layoutRId)
 
