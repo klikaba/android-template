@@ -42,7 +42,7 @@ buildscript {
         // Dependency injection
         javaxInjectVersion = '1'
         javaxAnnotationVersion = '1.0'
-        daggerVersion = '2.16'
+        daggerVersion = '2.18'
 
         // Testing
         junitVersion = '4.12'
