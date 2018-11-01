@@ -33,6 +33,11 @@ abstract class OAuth2Module {
     @Singleton
     abstract fun provideOAuth2TokenStorage(oAuth2TokenStorage: OAuth2TokenStorage): TokenStorage<OAuth2Token>
 
+    @Binds
+    @Singleton
+    abstract fun provideDefaultOAuth2TokenApi(
+            @Authenticated(false) oAuth2TokenApi: OAuth2TokenApi): OAuth2TokenApi
+
     @Module
     companion object {
         @Provides
