@@ -31,6 +31,7 @@ abstract class BaseActivity<VIEW_MODEL_TYPE : BaseViewModel>
         doInjections()
 
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(viewModelClass)
+        lifecycle.addObserver(viewModel)
 
         viewDataBinding = DataBindingUtil.setContentView<ViewDataBinding>(this, layoutRId)
 

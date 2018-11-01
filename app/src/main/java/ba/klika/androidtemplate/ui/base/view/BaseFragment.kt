@@ -38,6 +38,7 @@ abstract class BaseFragment<VIEW_MODEL_TYPE : BaseViewModel> : DaggerFragment(),
         super.onViewCreated(view, savedInstanceState)
 
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(viewModelClass)
+        lifecycle.addObserver(viewModel)
 
         val viewModelRId = viewModelNameRId
         if (viewModelRId != 0) {

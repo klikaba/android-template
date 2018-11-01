@@ -1,6 +1,7 @@
 package ba.klika.androidtemplate
 
 import android.app.Activity
+import ba.klika.androidtemplate.ui.base.di.component.DaggerAppComponent
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.DaggerApplication
