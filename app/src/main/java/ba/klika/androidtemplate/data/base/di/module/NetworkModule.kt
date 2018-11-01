@@ -14,6 +14,7 @@ import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import java.util.concurrent.TimeUnit
+import javax.inject.Qualifier
 import javax.inject.Singleton
 
 /**
@@ -35,6 +36,7 @@ abstract class NetworkModule {
     companion object {
         @Provides
         @Singleton
+        @Authenticated(false)
         @JvmStatic
         fun provideAuthenticator(): Authenticator {
             return Authenticator.NONE
@@ -60,10 +62,39 @@ abstract class NetworkModule {
         @Provides
         @Singleton
         @JvmStatic
-        fun provideOkHttpClient(networkConfig: NetworkConfig,
+        @Authenticated(false)
+        fun provideUnAuthenticatedOkHttpClient(networkConfig: NetworkConfig,
                                 authenticator: Authenticator,
                                 dispatcher: Dispatcher,
-                                interceptors: Set<@JvmSuppressWildcards Interceptor>): OkHttpClient {
+                                @Authenticated(false)
+                                unauthenticatedInterceptors: Set<@JvmSuppressWildcards Interceptor>,
+                                interceptors: Set<@JvmSuppressWildcards Interceptor>
+        ): OkHttpClient = createOkHttpClient(
+        networkConfig,
+        authenticator,
+        dispatcher,
+        interceptors.union(unauthenticatedInterceptors))
+
+        @Provides
+        @Singleton
+        @JvmStatic
+        @Authenticated(true)
+        fun provideAuthenticatedOkHttpClient(networkConfig: NetworkConfig,
+                                authenticator: Authenticator,
+                                dispatcher: Dispatcher,
+                                @Authenticated(true)
+                                authenticatedInterceptors: Set<@JvmSuppressWildcards Interceptor>,
+                                interceptors: Set<@JvmSuppressWildcards Interceptor>
+        ): OkHttpClient = createOkHttpClient(
+                networkConfig,
+                authenticator,
+                dispatcher,
+                interceptors.union(authenticatedInterceptors))
+
+        private fun createOkHttpClient(networkConfig: NetworkConfig,
+                                       authenticator: Authenticator,
+                                       dispatcher: Dispatcher,
+                                       interceptors: Set<@JvmSuppressWildcards Interceptor>): OkHttpClient {
             val builder: OkHttpClient.Builder = OkHttpClient.Builder()
                     .authenticator(authenticator)
                     .dispatcher(dispatcher)
@@ -76,13 +107,41 @@ abstract class NetworkModule {
                     .writeTimeout(networkConfig.writeTimeoutInMs, TimeUnit.MILLISECONDS)
                     .build()
         }
+
+        @Provides
+        @Singleton
+        @JvmStatic
+        @Authenticated(true)
+        fun provideAuthenticatedRetrofitApiFactory(
+                @Authenticated(true) okHttpClient: OkHttpClient,
+                networkConfig: NetworkConfig
+        ): ApiFactory = RetrofitApiFactory(okHttpClient, networkConfig)
+
+        @Provides
+        @Singleton
+        @JvmStatic
+        @Authenticated(false)
+        fun provideUnauthenticatedRetrofitApiFactory(
+                @Authenticated(false) okHttpClient: OkHttpClient,
+                networkConfig: NetworkConfig
+        ): ApiFactory = RetrofitApiFactory(okHttpClient, networkConfig)
     }
 
     @Binds
     @Singleton
-    abstract fun provideRetrofitApiFactory(retrofitApiFactory: RetrofitApiFactory): ApiFactory
+    abstract fun provideDefaultRetrofitApiFactory(@Authenticated(true) apiFactory: ApiFactory): ApiFactory
+
+    @Binds
+    @Singleton
+    abstract fun provideDefaultOkHttpClient(@Authenticated(true) okHttpClient: OkHttpClient): OkHttpClient
 
     @Binds
     @Singleton
     abstract fun provideDefaultNetworkConfig(defaultNetworkConfig: DefaultNetworkConfig): NetworkConfig
 }
+
+@Qualifier
+@MustBeDocumented
+@Retention(AnnotationRetention.RUNTIME)
+annotation class Authenticated(val isAuthenticated: Boolean)
+

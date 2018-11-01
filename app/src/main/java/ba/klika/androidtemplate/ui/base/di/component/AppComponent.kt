@@ -1,6 +1,7 @@
 package ba.klika.androidtemplate.ui.base.di.component
 
 import ba.klika.androidtemplate.App
+import ba.klika.androidtemplate.data.auth.oauth2.OAuth2Module
 import ba.klika.androidtemplate.data.base.di.module.CacheModule
 import ba.klika.androidtemplate.data.base.di.module.NetworkModule
 import ba.klika.androidtemplate.scheduling.AndroidSchedulingModule
@@ -27,7 +28,8 @@ import javax.inject.Singleton
 
     // Data
     NetworkModule::class,
-    CacheModule::class
+    CacheModule::class,
+    OAuth2Module::class
 ])
 @Singleton
 interface AppComponent : AndroidInjector<App> {
