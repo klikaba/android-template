@@ -23,7 +23,7 @@ buildscript {
         androidLifecycleVersion = '2.0.0'
         constraintLayoutVersion = '2.0.0-alpha2'
         archComponentsVersion = '2.0.0-rc01'
-        navigationVersion = '1.0.0-alpha06'
+        navigationVersion = '1.0.0-alpha07'
 
         // Reactive
         rxJava2Version = '2.1.9'
