@@ -1,13 +1,13 @@
 package ba.klika.androidtemplate.ui.main
 
-import ba.klika.androidtemplate.ui.base.view.BaseActivity
+import ba.klika.androidtemplate.ui.base.view.BaseBoundActivity
 import ba.klika.androidtemplate.ui.base.viewmodel.BaseViewModel
 import dagger.Module
 
 /**
  * @author Ensar Sarajčić <ensar.sarajcic@klika.ba>.
  */
-class MainActivity : BaseActivity<BaseViewModel>() {
+class MainActivity : BaseBoundActivity<BaseViewModel>() {
     override val layoutRId: Int
         get() = TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.
     override val viewModelNameRId: Int

@@ -1,30 +1,26 @@
 package ba.klika.androidtemplate.ui.base.view
 
 import android.os.Bundle
+import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
-import ba.klika.androidtemplate.ui.base.viewmodel.BaseViewModel
 import dagger.android.support.DaggerAppCompatActivity
-import javax.inject.Inject
 
 /**
  * Base activity for all activities
  * @author Ensar Sarajčić <ensar.sarajcic@klika.ba>.
  */
-abstract class BaseActivity<VIEW_MODEL_TYPE : BaseViewModel>
-    : DaggerAppCompatActivity(), BoundView<VIEW_MODEL_TYPE> {
+abstract class BaseActivity : DaggerAppCompatActivity() {
+    /**
+     * Provides layout id of this view
+     */
+    @get:LayoutRes
+    abstract val layoutRId: Int
 
-    private lateinit var viewDataBinding: ViewDataBinding
-
-    @Inject
-    protected lateinit var viewModelFactory: ViewModelProvider.Factory
-
-    final override lateinit var viewModel: VIEW_MODEL_TYPE
+    private var viewDataBinding: ViewDataBinding? = null
 
     /**
-     * Handles intents, injects lifecycle delegates and updates them
+     * Handles inflation and view binding
      * Don't forget to call super due to this!
      */
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,20 +28,25 @@ abstract class BaseActivity<VIEW_MODEL_TYPE : BaseViewModel>
 
         doInjections()
 
-        viewModel = ViewModelProviders.of(this, viewModelFactory).get(viewModelClass)
-        lifecycle.addObserver(viewModel)
-
-        viewDataBinding = DataBindingUtil.setContentView<ViewDataBinding>(this, layoutRId)
-
-        val viewModelRId = viewModelNameRId
-        if (viewModelRId != 0) {
-            viewDataBinding.setVariable(viewModelRId, viewModel)
-            viewDataBinding.setLifecycleOwner(this)
-            viewDataBinding.executePendingBindings()
+        preInflate()
+        if (layoutRId != 0) {
+            viewDataBinding = DataBindingUtil.setContentView(this, layoutRId)
         }
-
-        bindToViewModel()
+        postInflate(viewDataBinding)
     }
+
+    /**
+     * Invoked before inflating the view
+     * Called even when view won't be inflated if layout id is 0
+     */
+    protected open fun preInflate() {}
+
+    /**
+     * Invoked just after inflating the view
+     * Called even when view was not inflated if layout id was 0
+     * Override to add variables, etc.
+     */
+    protected open fun postInflate(viewDataBinding: ViewDataBinding?) { }
 
     /**
      * Override this if you want to inject lifecycle delegates prior to your onCreate() code

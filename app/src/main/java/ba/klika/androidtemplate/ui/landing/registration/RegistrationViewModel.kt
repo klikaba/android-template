@@ -5,6 +5,7 @@ import ba.klika.androidtemplate.data.session.Credentials
 import ba.klika.androidtemplate.data.session.SessionRepository
 import ba.klika.androidtemplate.ui.base.SimpleNavigationAction
 import ba.klika.androidtemplate.ui.base.viewmodel.BaseViewModel
+import ba.klika.androidtemplate.ui.base.viewmodel.SingleLiveEvent
 import javax.inject.Inject
 
 /**
@@ -15,7 +16,7 @@ class RegistrationViewModel
 
     val username = MutableLiveData<String>()
     val password = MutableLiveData<String>()
-    val navigationTrigger = MutableLiveData<SimpleNavigationAction>()
+    val navigationTrigger = SingleLiveEvent<SimpleNavigationAction>()
 
     fun onRegisterClick() {
         sessionRepository.logIn(

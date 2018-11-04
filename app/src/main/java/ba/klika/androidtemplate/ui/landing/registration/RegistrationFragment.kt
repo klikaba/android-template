@@ -5,9 +5,8 @@ import androidx.lifecycle.ViewModel
 import ba.klika.androidtemplate.BR
 import ba.klika.androidtemplate.R
 import ba.klika.androidtemplate.ui.base.SimpleNavigationAction
-import ba.klika.androidtemplate.ui.base.di.ActivityScope
 import ba.klika.androidtemplate.ui.base.di.viewmodel.ViewModelKey
-import ba.klika.androidtemplate.ui.base.view.BaseFragment
+import ba.klika.androidtemplate.ui.base.view.BaseBoundFragment
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -15,7 +14,7 @@ import dagger.multibindings.IntoMap
 /**
  * @author Ensar Sarajčić <ensar.sarajcic@klika.ba>.
  */
-class RegistrationFragment : BaseFragment<RegistrationViewModel>() {
+class RegistrationFragment : BaseBoundFragment<RegistrationViewModel>() {
     override val layoutRId: Int
         get() = R.layout.fragment_registration
     override val viewModelNameRId: Int
@@ -39,6 +38,5 @@ abstract class RegisterModule {
     @Binds
     @IntoMap
     @ViewModelKey(RegistrationViewModel::class)
-    @ActivityScope
     abstract fun provideRegisterViewModel(registrationViewModel: RegistrationViewModel): ViewModel
 }

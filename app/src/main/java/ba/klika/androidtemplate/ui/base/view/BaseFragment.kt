@@ -4,51 +4,48 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
-import ba.klika.androidtemplate.ui.base.viewmodel.BaseViewModel
 import dagger.android.support.DaggerFragment
-import javax.inject.Inject
 
 /**
- * Base for all kotlin fragments
+ * Base fragment for all fragments
  * @author Ensar Sarajčić <ensar.sarajcic@klika.ba>.
  */
-abstract class BaseFragment<VIEW_MODEL_TYPE : BaseViewModel> : DaggerFragment(), BoundView<VIEW_MODEL_TYPE> {
+abstract class BaseFragment : DaggerFragment() {
+    /**
+     * Provides layout id of this view
+     * May not be 0!
+     */
+    @get:LayoutRes
+    abstract val layoutRId: Int
 
     private lateinit var viewDataBinding: ViewDataBinding
 
     /**
-     * Use this if you need to get activity view model
-     * (ViewModelProviders.of(activity, viewModelFactory).get(activityViewModelClass))
-     *
-     * That way it will use the injected instance of ViewModel
+     * Inflates layout
+     * Don't forget to call super due to this
      */
-    @Inject
-    protected lateinit var viewModelFactory: ViewModelProvider.Factory
-
-    final override lateinit var viewModel: VIEW_MODEL_TYPE
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        viewDataBinding = DataBindingUtil.inflate<ViewDataBinding>(inflater, layoutRId, container, false)
+        preInflate()
+        viewDataBinding = DataBindingUtil.inflate(inflater, layoutRId, container, false)
         return viewDataBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        viewModel = ViewModelProviders.of(this, viewModelFactory).get(viewModelClass)
-        lifecycle.addObserver(viewModel)
-
-        val viewModelRId = viewModelNameRId
-        if (viewModelRId != 0) {
-            viewDataBinding.setVariable(viewModelRId, viewModel)
-            viewDataBinding.setLifecycleOwner(viewLifecycleOwner)
-            viewDataBinding.executePendingBindings()
-        }
-
-        bindToViewModel()
+        postInflate(viewDataBinding)
     }
+
+    /**
+     * Invoked before inflating the view
+     */
+    protected open fun preInflate() {}
+
+    /**
+     * Invoked just after inflating the view
+     * Override to add variables, etc.
+     */
+    protected open fun postInflate(viewDataBinding: ViewDataBinding?) { }
 }

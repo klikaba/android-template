@@ -8,6 +8,7 @@ import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.multibindings.IntoSet
+import dagger.multibindings.Multibinds
 import okhttp3.Authenticator
 import okhttp3.Dispatcher
 import okhttp3.Interceptor
@@ -129,13 +130,18 @@ abstract class NetworkModule {
         ): ApiFactory = RetrofitApiFactory(okHttpClient, networkConfig)
     }
 
-//    @Binds
-//    @Singleton
-//    abstract fun provideDefaultRetrofitApiFactory(@Authenticated(true) apiFactory: ApiFactory): ApiFactory
-//
-//    @Binds
-//    @Singleton
-//    abstract fun provideDefaultOkHttpClient(@Authenticated(true) okHttpClient: OkHttpClient): OkHttpClient
+    @Multibinds
+    @Singleton
+    @Authenticated(false)
+    abstract fun bindEmptyUnauthenticatedInterceptors(): Set<@JvmSuppressWildcards Interceptor>
+
+    @Binds
+    @Singleton
+    abstract fun provideDefaultRetrofitApiFactory(@Authenticated(true) apiFactory: ApiFactory): ApiFactory
+
+    @Binds
+    @Singleton
+    abstract fun provideDefaultOkHttpClient(@Authenticated(true) okHttpClient: OkHttpClient): OkHttpClient
 
     @Binds
     @Singleton

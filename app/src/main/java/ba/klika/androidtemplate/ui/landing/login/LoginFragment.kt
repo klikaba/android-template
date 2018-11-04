@@ -6,7 +6,7 @@ import ba.klika.androidtemplate.BR
 import ba.klika.androidtemplate.R
 import ba.klika.androidtemplate.ui.base.SimpleNavigationAction
 import ba.klika.androidtemplate.ui.base.di.viewmodel.ViewModelKey
-import ba.klika.androidtemplate.ui.base.view.BaseFragment
+import ba.klika.androidtemplate.ui.base.view.BaseBoundFragment
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -14,7 +14,7 @@ import dagger.multibindings.IntoMap
 /**
  * @author Ensar Sarajčić <ensar.sarajcic@klika.ba>.
  */
-class LoginFragment : BaseFragment<LoginViewModel>() {
+class LoginFragment : BaseBoundFragment<LoginViewModel>() {
     override val layoutRId: Int
         get() = R.layout.fragment_login
     override val viewModelNameRId: Int
