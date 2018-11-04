@@ -34,7 +34,7 @@ buildscript {
         retrofit2Version = '2.3.0'
 
         // Database
-        roomVersion = '2.1.0-alpha01'
+        roomVersion = '2.1.0-alpha02'
 
         // Other libraries
         gsonVersion = '2.8.2'
