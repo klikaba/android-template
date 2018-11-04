@@ -15,7 +15,6 @@ import kotlin.reflect.KClass
 /**
  * @author Ensar Sarajčić <ensar.sarajcic@klika.ba>.
  */
-@Singleton
 class ViewModelFactory
 @Inject constructor(private val viewModelProviders: Map<Class<out ViewModel>, @JvmSuppressWildcards Provider<ViewModel>>) : ViewModelProvider.Factory {
 
@@ -40,7 +39,6 @@ annotation class ViewModelKey(val value: KClass<out ViewModel>)
 @Module
 abstract class ViewModelFactoryModule {
     @Binds
-    @Singleton
     abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
 
     @Multibinds

@@ -1,29 +1,39 @@
 package ba.klika.androidtemplate.ui.splash
 
+import android.content.Intent
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.Observer
 import androidx.lifecycle.OnLifecycleEvent
 import androidx.lifecycle.ViewModel
 import ba.klika.androidtemplate.data.session.SessionRepository
 import ba.klika.androidtemplate.ui.base.di.viewmodel.ViewModelKey
-import ba.klika.androidtemplate.ui.base.view.BaseActivity
+import ba.klika.androidtemplate.ui.base.view.BaseBoundActivity
 import ba.klika.androidtemplate.ui.base.viewmodel.BaseViewModel
 import ba.klika.androidtemplate.ui.base.viewmodel.SingleLiveEvent
+import ba.klika.androidtemplate.ui.landing.LandingActivity
+import ba.klika.androidtemplate.ui.main.MainActivity
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
 import javax.inject.Inject
-import javax.inject.Singleton
 
-class SplashActivity : BaseActivity<BaseViewModel>() {
+class SplashActivity : BaseBoundActivity<SplashViewModel>() {
     override val layoutRId: Int
-        get() = TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.
+        get() = 0
     override val viewModelNameRId: Int
-        get() = TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.
-    override val viewModelClass: Class<BaseViewModel>
-        get() = TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.
+        get() = 0
+    override val viewModelClass: Class<SplashViewModel>
+        get() = SplashViewModel::class.java
 
     override fun bindToViewModel() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        viewModel.navigationEvent.observe(this, Observer {
+            when(it) {
+                SplashViewModel.NavigationEvent.MAIN ->
+                    startActivity(Intent(this, MainActivity::class.java))
+                SplashViewModel.NavigationEvent.LANDING ->
+                    startActivity(Intent(this, LandingActivity::class.java))
+            }
+        })
     }
 }
 
@@ -35,7 +45,7 @@ class SplashViewModel
         LANDING
     }
 
-    private val navigationEvent = SingleLiveEvent<NavigationEvent>()
+    val navigationEvent = SingleLiveEvent<NavigationEvent>()
 
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     fun onStart() {

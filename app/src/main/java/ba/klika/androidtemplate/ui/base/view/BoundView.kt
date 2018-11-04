@@ -1,6 +1,5 @@
 package ba.klika.androidtemplate.ui.base.view
 
-import androidx.annotation.LayoutRes
 import ba.klika.androidtemplate.ui.base.viewmodel.BaseViewModel
 
 /**
@@ -9,12 +8,6 @@ import ba.klika.androidtemplate.ui.base.viewmodel.BaseViewModel
  * @author Ensar Sarajčić <ensar.sarajcic@klika.ba>.
  */
 interface BoundView<VIEW_MODEL_TYPE : BaseViewModel> {
-    /**
-     * Provides layout id of this view
-     */
-    @get:LayoutRes
-    val layoutRId: Int
-
     /**
      * Provides name of view model (BR.name)
      */

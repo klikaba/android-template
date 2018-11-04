@@ -6,7 +6,7 @@ import androidx.navigation.fragment.NavHostFragment
 import ba.klika.androidtemplate.BR
 import ba.klika.androidtemplate.R
 import ba.klika.androidtemplate.ui.base.di.viewmodel.ViewModelKey
-import ba.klika.androidtemplate.ui.base.view.BaseFragment
+import ba.klika.androidtemplate.ui.base.view.BaseBoundFragment
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -14,7 +14,7 @@ import dagger.multibindings.IntoMap
 /**
  * @author Ensar Sarajčić <ensar.sarajcic@klika.ba>.
  */
-class LandingFragment : BaseFragment<LandingViewModel>() {
+class LandingFragment : BaseBoundFragment<LandingViewModel>() {
     override val layoutRId: Int
         get() = R.layout.fragment_landing
     override val viewModelNameRId: Int
