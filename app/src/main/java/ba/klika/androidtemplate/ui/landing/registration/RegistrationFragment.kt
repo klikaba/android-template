@@ -1,5 +1,6 @@
 package ba.klika.androidtemplate.ui.landing.registration
 
+import android.content.Intent
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import ba.klika.androidtemplate.BR
@@ -7,6 +8,7 @@ import ba.klika.androidtemplate.R
 import ba.klika.androidtemplate.ui.base.SimpleNavigationAction
 import ba.klika.androidtemplate.ui.base.di.viewmodel.ViewModelKey
 import ba.klika.androidtemplate.ui.base.view.BaseBoundFragment
+import ba.klika.androidtemplate.ui.main.MainActivity
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -25,8 +27,11 @@ class RegistrationFragment : BaseBoundFragment<RegistrationViewModel>() {
     override fun bindToViewModel() {
         viewModel.navigationTrigger.observe(viewLifecycleOwner, Observer {
             when(it) {
-                SimpleNavigationAction.NEXT -> {}
-                SimpleNavigationAction.BACK -> {}
+                SimpleNavigationAction.NEXT -> {
+                    activity?.startActivity(Intent(activity, MainActivity::class.java))
+                    activity?.finish()
+                }
+                SimpleNavigationAction.BACK -> activity?.onBackPressed()
             }
         })
     }

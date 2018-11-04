@@ -24,7 +24,7 @@ class RegistrationViewModel
     fun onRegisterClick() {
         sessionRepository.logIn(
                 Credentials(username.value!!, password.value!!)
-        ).subscribe {
+        ).asIOCall().subscribe {
             navigationTrigger.postValue(SimpleNavigationAction.NEXT)
         }.disposeOnClear()
     }
