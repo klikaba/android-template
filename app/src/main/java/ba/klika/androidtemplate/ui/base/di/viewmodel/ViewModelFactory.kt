@@ -2,10 +2,10 @@ package ba.klika.androidtemplate.ui.base.di.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import ba.klika.androidtemplate.ui.base.viewmodel.BaseViewModel
 import dagger.Binds
 import dagger.MapKey
 import dagger.Module
+import dagger.multibindings.Multibinds
 import javax.inject.Inject
 import javax.inject.Provider
 import javax.inject.Singleton
@@ -17,9 +17,10 @@ import kotlin.reflect.KClass
  */
 @Singleton
 class ViewModelFactory
-@Inject constructor(private val viewModelProviders: MutableMap<Class<out ViewModel?>, Provider<ViewModel>>) : ViewModelProvider.Factory {
+@Inject constructor(private val viewModelProviders: Map<Class<out ViewModel>, @JvmSuppressWildcards Provider<ViewModel>>) : ViewModelProvider.Factory {
 
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+    @Suppress("UNCHECKED_CAST")
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
         val viewModelProvider = viewModelProviders[modelClass] ?: throw IllegalArgumentException("Missing provider for class ${modelClass.canonicalName}")
         val providedViewModel = viewModelProvider.get() ?: throw NullPointerException("Provider for ViewModel may not return null! (provider for ${modelClass.canonicalName}")
         if (modelClass.isInstance(providedViewModel)) {
@@ -30,13 +31,19 @@ class ViewModelFactory
     }
 }
 
+@MustBeDocumented
 @Target(AnnotationTarget.FUNCTION, AnnotationTarget.PROPERTY_GETTER, AnnotationTarget.PROPERTY_SETTER)
 @Retention(AnnotationRetention.RUNTIME)
 @MapKey
-annotation class ViewModelKey(val value: KClass<out BaseViewModel>)
+annotation class ViewModelKey(val value: KClass<out ViewModel>)
 
 @Module
 abstract class ViewModelFactoryModule {
     @Binds
+    @Singleton
     abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
+
+    @Multibinds
+    @Singleton
+    abstract fun bindViewModelProviders(): Map<Class<out ViewModel>, ViewModel>
 }

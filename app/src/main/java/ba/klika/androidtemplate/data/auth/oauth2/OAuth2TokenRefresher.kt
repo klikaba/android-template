@@ -1,6 +1,5 @@
 package ba.klika.androidtemplate.data.auth.oauth2
 
-import ba.klika.androidtemplate.data.auth.TokenStorage
 import ba.klika.androidtemplate.data.auth.oauth2.request.OAuth2RequestFactory
 import ba.klika.androidtemplate.data.base.di.module.Authenticated
 import javax.inject.Inject
@@ -11,17 +10,16 @@ import kotlin.NullPointerException
  */
 class OAuth2TokenRefresher
 @Inject constructor(
-        private val tokenStorage: TokenStorage<OAuth2Token>,
+        private val tokenStorage: OAuth2TokenStorage,
         private val oAuth2RequestFactory: OAuth2RequestFactory,
-        @Authenticated(true)
-        private val oAuth2TokenApi: OAuth2TokenApi) {
+        private val oAuth2TokenApi: Lazy<OAuth2TokenApi>) {
 
     fun refreshToken(): OAuth2Token {
         var newToken: OAuth2Token?
         synchronized(lock) {
             val oldToken = tokenStorage.readToken()
             return if (oldToken != null && oldToken.expired()) {
-                newToken = oAuth2TokenApi.refreshToken(
+                newToken = oAuth2TokenApi.value.refreshToken(
                         oAuth2RequestFactory.makeRefreshTokenRequest(oldToken.refreshToken)
                 ).blockingGet()
                 // Response body should not be null if it was successful

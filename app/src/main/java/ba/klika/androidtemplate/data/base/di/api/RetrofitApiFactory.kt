@@ -12,9 +12,8 @@ import javax.inject.Singleton
  * Implementation of [ApiFactory] providing instances using Retrofit2
  * @author Ensar Sarajčić <ensar.sarajcic@klika.ba>.
  */
-@Singleton
 class RetrofitApiFactory
-@Inject constructor(
+constructor(
         private val okHttpClient: OkHttpClient,
         private val networkConfig: NetworkConfig
 ) : ApiFactory {

@@ -3,7 +3,7 @@ package ba.klika.androidtemplate.ui.base.di.module
 import ba.klika.androidtemplate.ui.base.di.ActivityScope
 import ba.klika.androidtemplate.ui.landing.LandingActivity
 import ba.klika.androidtemplate.ui.landing.LandingFragmentBuilder
-import ba.klika.androidtemplate.ui.landing.LandingModule
+import ba.klika.androidtemplate.ui.landing.LandingHostModule
 import ba.klika.androidtemplate.ui.main.MainActivity
 import ba.klika.androidtemplate.ui.main.MainFragmentBuilder
 import ba.klika.androidtemplate.ui.main.MainModule
@@ -26,7 +26,7 @@ abstract class ActivityBuilder {
     abstract fun provideSplashActivity(): SplashActivity
 
     @ActivityScope
-    @ContributesAndroidInjector(modules = [LandingModule::class, LandingFragmentBuilder::class])
+    @ContributesAndroidInjector(modules = [LandingHostModule::class, LandingFragmentBuilder::class])
     abstract fun provideLandingActivity(): LandingActivity
 
     @ActivityScope

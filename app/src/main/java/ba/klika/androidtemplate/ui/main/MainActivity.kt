@@ -12,9 +12,6 @@ class MainActivity : BaseActivity<BaseViewModel>() {
         get() = TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.
     override val viewModelNameRId: Int
         get() = TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.
-    override var viewModel: BaseViewModel
-        get() = TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.
-        set(value) {}
     override val viewModelClass: Class<BaseViewModel>
         get() = TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.
 

@@ -21,6 +21,8 @@ abstract class BaseActivity<VIEW_MODEL_TYPE : BaseViewModel>
     @Inject
     protected lateinit var viewModelFactory: ViewModelProvider.Factory
 
+    final override lateinit var viewModel: VIEW_MODEL_TYPE
+
     /**
      * Handles intents, injects lifecycle delegates and updates them
      * Don't forget to call super due to this!

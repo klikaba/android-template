@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- LANDING -->
+    <string name="label_landing_welcome">Welcome</string>
+    <string name="label_landing_login">Log In</string>
+    <string name="label_landing_register">Register</string>
+
+    <!-- BUTTONS -->
+    <string name="label_button_login">Log In</string>
+    <string name="label_button_register">Register</string>
+
+    <!-- FIELDS -->
+    <string name="label_field_email">Email</string>
+    <string name="label_field_password">Password</string>
+
+    <!-- MENUS -->
+    <string name="label_menu_import">Import</string>
+    <string name="label_menu_gallery">Gallery</string>
+    <string name="label_menu_slideshow">Slideshow</string>
+    <string name="label_menu_tools">Tools</string>
+    <string name="label_menu_title_communicate">Communicate</string>
+    <string name="label_menu_share">Share</string>
+    <string name="lable_menu_send">Send</string>
+</resources>

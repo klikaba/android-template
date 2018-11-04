@@ -11,4 +11,14 @@
     <style name="AppTheme.Splash">
         <item name="android:windowBackground">@drawable/splash_background</item>
     </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="Button.Base" parent="Widget.AppCompat.Button" />
+
+    <style name="Input.Base" parent="Widget.Design.TextInputLayout" />
+
+    <style name="Text.Title" parent="TextAppearance.AppCompat.Title" />
 </resources>

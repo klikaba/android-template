@@ -7,6 +7,7 @@ import ba.klika.androidtemplate.data.base.di.module.NetworkModule
 import ba.klika.androidtemplate.data.session.SessionModule
 import ba.klika.androidtemplate.scheduling.AndroidSchedulingModule
 import ba.klika.androidtemplate.ui.base.di.module.ActivityBuilder
+import ba.klika.androidtemplate.ui.base.di.module.AppConfigModule
 import ba.klika.androidtemplate.ui.base.di.module.AppModule
 import ba.klika.androidtemplate.ui.base.di.viewmodel.ViewModelFactoryModule
 import dagger.Component
@@ -26,6 +27,9 @@ import javax.inject.Singleton
     AppModule::class,
     ActivityBuilder::class,
     ViewModelFactoryModule::class,
+
+    // Config
+    AppConfigModule::class,
 
     // Data
     NetworkModule::class,

@@ -12,7 +12,7 @@ import javax.inject.Singleton
  *
  * @author Ensar Sarajčić <ensar.sarajcic@klika.ba>.
  */
-@Module(subcomponents = [])
+@Module
 abstract class AppModule {
 
     @Binds

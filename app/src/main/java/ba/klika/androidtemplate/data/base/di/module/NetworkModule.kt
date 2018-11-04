@@ -64,6 +64,7 @@ abstract class NetworkModule {
         @JvmStatic
         @Authenticated(false)
         fun provideUnAuthenticatedOkHttpClient(networkConfig: NetworkConfig,
+                                @Authenticated(false)
                                 authenticator: Authenticator,
                                 dispatcher: Dispatcher,
                                 @Authenticated(false)
@@ -80,6 +81,7 @@ abstract class NetworkModule {
         @JvmStatic
         @Authenticated(true)
         fun provideAuthenticatedOkHttpClient(networkConfig: NetworkConfig,
+                                @Authenticated(true)
                                 authenticator: Authenticator,
                                 dispatcher: Dispatcher,
                                 @Authenticated(true)
@@ -127,13 +129,13 @@ abstract class NetworkModule {
         ): ApiFactory = RetrofitApiFactory(okHttpClient, networkConfig)
     }
 
-    @Binds
-    @Singleton
-    abstract fun provideDefaultRetrofitApiFactory(@Authenticated(true) apiFactory: ApiFactory): ApiFactory
-
-    @Binds
-    @Singleton
-    abstract fun provideDefaultOkHttpClient(@Authenticated(true) okHttpClient: OkHttpClient): OkHttpClient
+//    @Binds
+//    @Singleton
+//    abstract fun provideDefaultRetrofitApiFactory(@Authenticated(true) apiFactory: ApiFactory): ApiFactory
+//
+//    @Binds
+//    @Singleton
+//    abstract fun provideDefaultOkHttpClient(@Authenticated(true) okHttpClient: OkHttpClient): OkHttpClient
 
     @Binds
     @Singleton
