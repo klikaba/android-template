@@ -1,27 +1,27 @@
 package ba.klika.androidtemplate.ui.main
 
-import ba.klika.androidtemplate.ui.base.view.BaseBoundActivity
-import ba.klika.androidtemplate.ui.base.viewmodel.BaseViewModel
+import ba.klika.androidtemplate.R
+import ba.klika.androidtemplate.ui.base.di.FragmentScope
+import ba.klika.androidtemplate.ui.base.view.BaseActivity
+import ba.klika.androidtemplate.ui.main.country.CountriesFragment
+import ba.klika.androidtemplate.ui.main.country.CountriesModule
 import dagger.Module
+import dagger.android.ContributesAndroidInjector
 
 /**
  * @author Ensar Sarajčić <ensar.sarajcic@klika.ba>.
  */
-class MainActivity : BaseBoundActivity<BaseViewModel>() {
+class MainActivity : BaseActivity() {
     override val layoutRId: Int
-        get() = TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.
-    override val viewModelNameRId: Int
-        get() = TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.
-    override val viewModelClass: Class<BaseViewModel>
-        get() = TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.
-
-    override fun bindToViewModel() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+        get() = R.layout.activity_main
 }
 
 @Module
 abstract class MainModule
 
 @Module
-abstract class MainFragmentBuilder
+abstract class MainFragmentBuilder {
+    @FragmentScope
+    @ContributesAndroidInjector(modules = [CountriesModule::class])
+    abstract fun provideCountriesFragment(): CountriesFragment
+}

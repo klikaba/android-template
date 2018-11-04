@@ -21,19 +21,19 @@ abstract class BaseViewModel(protected val schedulingProvider: SchedulingProvide
 
     protected fun Disposable.disposeOnClear() = addDisposable(this@disposeOnClear)
 
-    protected fun Single<*>.asIOCall() = this@asIOCall.observeOn(schedulingProvider.main())
+    protected fun <T> Single<T>.asIOCall() = this@asIOCall.observeOn(schedulingProvider.main())
             .subscribeOn(schedulingProvider.io())
 
     protected fun Completable.asIOCall() = this@asIOCall.observeOn(schedulingProvider.main())
             .subscribeOn(schedulingProvider.io())
 
-    protected fun Maybe<*>.asIOCall() = this@asIOCall.observeOn(schedulingProvider.main())
+    protected fun <T> Maybe<T>.asIOCall() = this@asIOCall.observeOn(schedulingProvider.main())
             .subscribeOn(schedulingProvider.io())
 
-    protected fun Flowable<*>.asIOCall() = this@asIOCall.observeOn(schedulingProvider.main())
+    protected fun <T> Flowable<T>.asIOCall() = this@asIOCall.observeOn(schedulingProvider.main())
             .subscribeOn(schedulingProvider.io())
 
-    protected fun Observable<*>.asIOCall() = this@asIOCall.observeOn(schedulingProvider.main())
+    protected fun <T> Observable<T>.asIOCall() = this@asIOCall.observeOn(schedulingProvider.main())
             .subscribeOn(schedulingProvider.io())
 
     /**

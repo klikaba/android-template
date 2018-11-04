@@ -52,7 +52,7 @@ class SplashViewModel
 
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     fun onStart() {
-        sessionRepository.hasSession().subscribe { it: Boolean ->
+        sessionRepository.hasSession().asIOCall().subscribe { it: Boolean ->
             if (it) {
                 navigationEvent.postValue(NavigationEvent.MAIN)
             } else {
