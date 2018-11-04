@@ -28,7 +28,9 @@ class SessionRepositoryImpl
                 oAuth2RequestFactory.makeCreateTokenRequest(
                         credentials.username,
                         credentials.password)
-        ).toCompletable()
+        ).doOnSuccess {
+            oAuth2TokenStorage.saveToken(it)
+        }.toCompletable()
     }
 
     override fun logOut(): Completable = Completable.fromAction { oAuth2TokenStorage.clearToken() }
