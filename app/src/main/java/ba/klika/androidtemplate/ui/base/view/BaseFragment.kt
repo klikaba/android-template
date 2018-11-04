@@ -29,6 +29,8 @@ abstract class BaseFragment<VIEW_MODEL_TYPE : BaseViewModel> : DaggerFragment(),
     @Inject
     protected lateinit var viewModelFactory: ViewModelProvider.Factory
 
+    final override lateinit var viewModel: VIEW_MODEL_TYPE
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         viewDataBinding = DataBindingUtil.inflate<ViewDataBinding>(inflater, layoutRId, container, false)
         return viewDataBinding.root
@@ -43,7 +45,7 @@ abstract class BaseFragment<VIEW_MODEL_TYPE : BaseViewModel> : DaggerFragment(),
         val viewModelRId = viewModelNameRId
         if (viewModelRId != 0) {
             viewDataBinding.setVariable(viewModelRId, viewModel)
-            viewDataBinding.setLifecycleOwner(this)
+            viewDataBinding.setLifecycleOwner(viewLifecycleOwner)
             viewDataBinding.executePendingBindings()
         }
 

@@ -1,22 +1,27 @@
 package ba.klika.androidtemplate.ui.landing
 
+import ba.klika.androidtemplate.R
+import ba.klika.androidtemplate.ui.base.di.FragmentScope
 import ba.klika.androidtemplate.ui.base.view.BaseActivity
 import ba.klika.androidtemplate.ui.base.viewmodel.BaseViewModel
+import ba.klika.androidtemplate.ui.landing.login.LoginFragment
+import ba.klika.androidtemplate.ui.landing.login.LoginModule
+import ba.klika.androidtemplate.ui.landing.login.LoginViewModel
+import ba.klika.androidtemplate.ui.landing.registration.RegisterModule
+import ba.klika.androidtemplate.ui.landing.registration.RegistrationFragment
 import dagger.Module
+import dagger.android.ContributesAndroidInjector
 
 /**
  * @author Ensar Sarajčić <ensar.sarajcic@klika.ba>.
  */
 class LandingActivity : BaseActivity<BaseViewModel>() {
     override val layoutRId: Int
-        get() = TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.
+        get() = R.layout.activity_landing
     override val viewModelNameRId: Int
-        get() = TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.
-    override var viewModel: BaseViewModel
-        get() = TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.
-        set(value) {}
+        get() = 0
     override val viewModelClass: Class<BaseViewModel>
-        get() = TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.
+        get() = BaseViewModel::class.java
 
     override fun bindToViewModel() {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
@@ -24,7 +29,16 @@ class LandingActivity : BaseActivity<BaseViewModel>() {
 }
 
 @Module
-abstract class LandingModule
+abstract class LandingHostModule
 
 @Module
-abstract class LandingFragmentBuilder
+abstract class LandingFragmentBuilder {
+
+    @FragmentScope
+    @ContributesAndroidInjector(modules = [LoginModule::class])
+    abstract fun provideLoginFragment(): LoginFragment
+
+    @FragmentScope
+    @ContributesAndroidInjector(modules = [RegisterModule::class])
+    abstract fun provideRegisterFragment(): RegistrationFragment
+}

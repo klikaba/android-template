@@ -13,7 +13,7 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
 
     protected fun addDisposable(disposable: Disposable) = compositeDisposable.add(disposable)
 
-    protected fun Disposable.addToCompositeDisposable() = compositeDisposable.add(this@addToCompositeDisposable)
+    protected fun Disposable.disposeOnClear() = compositeDisposable.add(this@disposeOnClear)
 
     override fun onCleared() {
         super.onCleared()

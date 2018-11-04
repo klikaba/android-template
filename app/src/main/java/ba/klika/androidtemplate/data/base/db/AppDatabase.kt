@@ -8,5 +8,5 @@ import javax.inject.Singleton
  * @author Ensar Sarajčić <ensar.sarajcic@klika.ba>.
  */
 @Singleton
-@Database(entities = [], version = 1)
+@Database(entities = [MockEntity::class], version = 1)
 abstract class AppDatabase : RoomDatabase()

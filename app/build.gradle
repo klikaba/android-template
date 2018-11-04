@@ -48,7 +48,6 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
 
     // AndroidX
-    kapt "com.android.databinding:compiler:$buildToolsVersion"
     kapt "androidx.lifecycle:lifecycle-compiler:$androidLifecycleVersion"
     implementation "androidx.appcompat:appcompat:$appCompatVersion"
     implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
