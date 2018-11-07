@@ -24,14 +24,13 @@ abstract class OAuth2Module {
 
     @Binds
     @Singleton
-    @IntoSet
     @Authenticated(true)
     abstract fun provideOAuth2Authenticator(oAuth2Authenticator: OAuth2Authenticator): Authenticator
 
-//    @Binds
-//    @Singleton
-//    abstract fun provideDefaultOAuth2TokenApi(
-//            @Authenticated(false) oAuth2TokenApi: OAuth2TokenApi): OAuth2TokenApi
+    @Binds
+    @Singleton
+    abstract fun provideDefaultOAuth2TokenApi(
+            @Authenticated(false) oAuth2TokenApi: OAuth2TokenApi): OAuth2TokenApi
 
     @Module
     companion object {
