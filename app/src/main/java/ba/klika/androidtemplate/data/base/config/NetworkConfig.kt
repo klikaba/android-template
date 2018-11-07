@@ -17,7 +17,7 @@ interface NetworkConfig {
 @Singleton
 class DefaultNetworkConfig
 @Inject constructor(): NetworkConfig {
-    override val baseUrl: String = ""
+    override val baseUrl: String = "https://klika-rails-api.herokuapp.com"
     override val connectTimeoutInMs: Long = DEFAULT_TIMEOUT_MS
     override val readTimeoutInMs: Long = DEFAULT_TIMEOUT_MS
     override val writeTimeoutInMs: Long = DEFAULT_TIMEOUT_MS

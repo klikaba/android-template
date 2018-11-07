@@ -57,5 +57,5 @@ abstract class CountriesModule {
     @Binds
     @IntoMap
     @ViewModelKey(CountriesViewModel::class)
-    abstract fun provideCountriesViewModel(landingViewModel: CountriesViewModel): ViewModel
+    abstract fun provideCountriesViewModel(countriesViewModel: CountriesViewModel): ViewModel
 }
