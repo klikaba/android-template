@@ -30,10 +30,10 @@ abstract class BaseViewModel(protected val schedulingProvider: SchedulingProvide
     protected fun <T> Maybe<T>.asIOCall() = this@asIOCall.observeOn(schedulingProvider.main())
             .subscribeOn(schedulingProvider.io())
 
-    protected fun <T> Flowable<T>.asIOCall() = this@asIOCall.observeOn(schedulingProvider.main())
+    protected fun <T> Flowable<T>.asIOCall() = this@asIOCall.observeOn(schedulingProvider.main(), true) // Enforcing same order as coming from upstream
             .subscribeOn(schedulingProvider.io())
 
-    protected fun <T> Observable<T>.asIOCall() = this@asIOCall.observeOn(schedulingProvider.main())
+    protected fun <T> Observable<T>.asIOCall() = this@asIOCall.observeOn(schedulingProvider.main(), true) // Enforcing same order as coming from upstream
             .subscribeOn(schedulingProvider.io())
 
     /**
