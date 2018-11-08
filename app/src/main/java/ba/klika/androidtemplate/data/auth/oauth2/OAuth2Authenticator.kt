@@ -76,17 +76,9 @@ class OAuth2Authenticator
 
         // refresh token
         val newToken: OAuth2Token?
-//        try {
-            newToken = oAuth2TokenRefresher.refreshToken()
-            // retry with new token
-            return retryWithToken(response, newToken.accessToken)
-//        } catch (e: DataException) {
-//            e.printStackTrace()
-//            if (e.getType() === DomainException.Type.CONNECTION_ERROR) {
-//                throw IOException()
-//            }
-//            return null
-//        }
+        newToken = oAuth2TokenRefresher.refreshToken()
+        // retry with new token
+        return retryWithToken(response, newToken.accessToken)
 
     }
 
