@@ -3,6 +3,8 @@ package ba.klika.androidtemplate.ui.landing.registration
 import androidx.lifecycle.MutableLiveData
 import ba.klika.androidtemplate.data.session.Credentials
 import ba.klika.androidtemplate.data.session.SessionRepository
+import ba.klika.androidtemplate.data.user.RegistrationInfo
+import ba.klika.androidtemplate.data.user.UserRepository
 import ba.klika.androidtemplate.scheduling.SchedulingProvider
 import ba.klika.androidtemplate.ui.base.SimpleNavigationAction
 import ba.klika.androidtemplate.ui.base.viewmodel.BaseViewModel
@@ -14,6 +16,7 @@ import javax.inject.Inject
  */
 class RegistrationViewModel
 @Inject constructor(
+        private val userRepository: UserRepository,
         private val sessionRepository: SessionRepository,
         schedulingProvider: SchedulingProvider): BaseViewModel(schedulingProvider) {
 
@@ -22,10 +25,17 @@ class RegistrationViewModel
     val navigationTrigger = SingleLiveEvent<SimpleNavigationAction>()
 
     fun onRegisterClick() {
-        sessionRepository.logIn(
-                Credentials(username.value!!, password.value!!)
-        ).asIOCall().subscribe {
-            navigationTrigger.postValue(SimpleNavigationAction.NEXT)
-        }.disposeOnClear()
+        val usernameValue = username.value
+        val passwordValue = password.value
+        userRepository.create(
+                RegistrationInfo(usernameValue!!, passwordValue!!)
+        ).flatMapCompletable {
+            sessionRepository.logIn(
+                    Credentials(usernameValue, passwordValue)
+            )
+        }.asIOCall().subscribe(
+            { navigationTrigger.postValue(SimpleNavigationAction.NEXT) },
+            { it.printStackTrace() }
+        ).disposeOnClear()
     }
 }
