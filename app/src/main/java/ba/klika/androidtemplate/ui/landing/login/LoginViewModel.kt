@@ -20,12 +20,14 @@ class LoginViewModel
     val username = MutableLiveData<String>()
     val password = MutableLiveData<String>()
     val navigationTrigger = SingleLiveEvent<SimpleNavigationAction>()
+    val toastMessage = MutableLiveData<String>()
 
     fun onLoginClick() {
         sessionRepository.logIn(
                 Credentials(username.value!!, password.value!!)
-        ).asIOCall().subscribe {
-            navigationTrigger.postValue(SimpleNavigationAction.NEXT)
-        }.disposeOnClear()
+        ).asIOCall().subscribe(
+                { navigationTrigger.postValue(SimpleNavigationAction.NEXT) },
+                { toastMessage.postValue("Failed") }
+        ).disposeOnClear()
     }
 }

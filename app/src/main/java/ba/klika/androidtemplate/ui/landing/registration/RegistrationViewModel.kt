@@ -18,11 +18,12 @@ class RegistrationViewModel
 @Inject constructor(
         private val userRepository: UserRepository,
         private val sessionRepository: SessionRepository,
-        schedulingProvider: SchedulingProvider): BaseViewModel(schedulingProvider) {
+        schedulingProvider: SchedulingProvider) : BaseViewModel(schedulingProvider) {
 
     val username = MutableLiveData<String>()
     val password = MutableLiveData<String>()
     val navigationTrigger = SingleLiveEvent<SimpleNavigationAction>()
+    val toastMessage = MutableLiveData<String>()
 
     fun onRegisterClick() {
         val usernameValue = username.value
@@ -34,8 +35,8 @@ class RegistrationViewModel
                     Credentials(usernameValue, passwordValue)
             )
         }.asIOCall().subscribe(
-            { navigationTrigger.postValue(SimpleNavigationAction.NEXT) },
-            { it.printStackTrace() }
+                { navigationTrigger.postValue(SimpleNavigationAction.NEXT) },
+                { toastMessage.postValue("Failed") }
         ).disposeOnClear()
     }
 }
