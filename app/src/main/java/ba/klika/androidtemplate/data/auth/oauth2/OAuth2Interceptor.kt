@@ -32,15 +32,7 @@ class OAuth2Interceptor
         if (oAuth2Token != null) {
             // has token expired?
             if (oAuth2Token.expired()) {
-//                try {
-                    oAuth2Token = oAuth2TokenRefresher.refreshToken()
-//                } catch (e: DataException) {
-//                    e.printStackTrace()
-//                    if (e.getType() === DomainException.Type.CONNECTION_ERROR) {
-//                        throw IOException()
-//                    }
-//                    return null
-//                }
+                oAuth2Token = oAuth2TokenRefresher.refreshToken()
 
             }
 
