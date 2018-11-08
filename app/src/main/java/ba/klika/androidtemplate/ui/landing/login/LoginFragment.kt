@@ -1,6 +1,7 @@
 package ba.klika.androidtemplate.ui.landing.login
 
 import android.content.Intent
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import ba.klika.androidtemplate.BR
@@ -33,6 +34,10 @@ class LoginFragment : BaseBoundFragment<LoginViewModel>() {
                 }
                 SimpleNavigationAction.BACK -> activity?.onBackPressed()
             }
+        })
+
+        viewModel.toastMessage.observe(viewLifecycleOwner, Observer {
+            Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
         })
     }
 }
