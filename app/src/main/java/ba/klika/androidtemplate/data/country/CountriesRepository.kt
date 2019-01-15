@@ -24,11 +24,11 @@ class ApiCountriesRepository
         private val countriesDao: CountriesDao) : CountriesRepository {
     override fun all(): Flowable<List<Country>> {
         return countriesDao.countries().onErrorReturnItem(ArrayList())
-                .concatWith {
-                    countriesApi.all()
-                            .map { res -> res.countries }
-                            .doOnSuccess(countriesDao::insertCountries)
-                }
+                .concatWith(
+                        countriesApi.all()
+                                .map { res -> res.countries }
+                                .doOnSuccess(countriesDao::insertCountries)
+                )
     }
 }
 
