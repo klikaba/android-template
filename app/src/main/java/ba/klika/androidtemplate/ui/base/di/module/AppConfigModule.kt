@@ -1,5 +1,6 @@
 package ba.klika.androidtemplate.ui.base.di.module
 
+import ba.klika.androidtemplate.BuildConfig
 import ba.klika.androidtemplate.data.auth.ClientConfig
 import dagger.Module
 import dagger.Provides
@@ -16,8 +17,8 @@ object AppConfigModule {
     @Singleton
     fun provideClientConfig(): ClientConfig = object : ClientConfig {
         override val clientId: String
-            get() = "TEST"
+            get() = BuildConfig.clientId
         override val clientSecret: String
-            get() = "TEST"
+            get() = BuildConfig.clientSecret
     }
 }
