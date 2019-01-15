@@ -23,10 +23,6 @@ Use Klika quality guidelines for general development references.
 
 This project is following **official Kotlin codestyle**, which is also enforced by [ktlint](https://github.com/shyiko/ktlint). It follows both codestyle from [kotlinlang.org](https://kotlinlang.org/docs/reference/coding-conventions.html) and [Android Kotlin styleguide](https://developer.android.com/kotlin/style-guide).
 
-### Keystore handling
-
-TBD
-
 ### New feature
 
 Use [GitFlow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow) development workflow with tests included.
@@ -69,7 +65,7 @@ We are using [Spek Framework](https://spekframework.org/).
 
 ### Continuous Integration
 
-TBD
+[AppCenter](https://appcenter.ms) is recommended for CI.
 
 ## Maintainers
 
