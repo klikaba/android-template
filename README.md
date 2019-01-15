@@ -6,11 +6,14 @@ This template provides starting point for Kotlin Android app, following Klika qu
 
 ### Dependencies
 
-TBD
+* Latest Android Studio
+> TODO - Add setup script
 
 ### Configuration
 
-TBD
+To get basic idea about configuration approach read [12factor](https://12factor.net/).
+
+Different build types are expected to have different configuration and it is stored in `.properties` files. Inside app module, by default, `debug.properties` and `release.properties` are expected. Example is provided in `config-example.properties`.
 
 ## Getting started
 
@@ -18,7 +21,7 @@ Use Klika quality guidelines for general development references.
 
 ### Kotlin styleguides
 
-TBD
+This project is following **official Kotlin codestyle**, which is also enforced by [ktlint](https://github.com/shyiko/ktlint). It follows both codestyle from [kotlinlang.org](https://kotlinlang.org/docs/reference/coding-conventions.html) and [Android Kotlin styleguide](https://developer.android.com/kotlin/style-guide).
 
 ### Keystore handling
 
@@ -26,41 +29,43 @@ TBD
 
 ### New feature
 
-TBD
+Use [GitFlow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow) development workflow with tests included.
 
 ### Pull request quality gates
 
-TBD
+- no conflicts with target branch
+- pass CI tests
+- code review approval
 
 ## Tools
 
 ### Networking with OkHttp + Retrofit
 
-TBD
+Networking is implemented via [Retrofit](https://square.github.io/retrofit/), with Http client provided by [OkHttp](http://square.github.io/okhttp/) that provides easy API communication and response parsing using [Gson](https://github.com/google/gson).
 
 ### Databinding + Android Architecture Components ViewModel
 
-TBD
+MVVM is implemented with help of [databinding](https://developer.android.com/topic/libraries/data-binding/) and [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) of [Android Architecture Components](https://developer.android.com/topic/libraries/architecture/).
 
 ### Reactive with RxJava2
 
-TBD
+Project is implemented with FRP (Functional Reactive Programming) using [RxJava2](https://github.com/ReactiveX/RxJava).
 
 ### Dependency injection with Dagger2
 
-TBD
+All dependencies in application are injected using [JSR-330](https://www.jcp.org/en/jsr/detail?id=330)(`@Inject`, `@Singleton`) annotations. [Dagger2](https://google.github.io/dagger/) is used to make all of it easier. 
 
 ### Quality gates
 
-TBD
+This project will run static code analyser on every commit and full test suite on git push.
 
 ### Static code analyser
 
-TBD
+This template is using [ktlint](https://github.com/shyiko/ktlint) for static code analysis. It is also using default [android lint](https://developer.android.com/studio/write/lint). All offenses are automatically tracked and prevented on every commit. This feature is handled by [Overcommit](https://github.com/brigade/overcommit) git hook manager.
 
 ### Testing
 
-TBD
+We are using [Spek Framework](https://spekframework.org/).
 
 ### Continuous Integration
 
