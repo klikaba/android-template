@@ -1,5 +1,6 @@
 package ba.klika.androidtemplate.data.base.config
 
+import ba.klika.androidtemplate.BuildConfig
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -17,7 +18,7 @@ interface NetworkConfig {
 @Singleton
 class DefaultNetworkConfig
 @Inject constructor(): NetworkConfig {
-    override val baseUrl: String = "https://klika-rails-api.herokuapp.com"
+    override val baseUrl: String = BuildConfig.baseUrl
     override val connectTimeoutInMs: Long = DEFAULT_TIMEOUT_MS
     override val readTimeoutInMs: Long = DEFAULT_TIMEOUT_MS
     override val writeTimeoutInMs: Long = DEFAULT_TIMEOUT_MS
