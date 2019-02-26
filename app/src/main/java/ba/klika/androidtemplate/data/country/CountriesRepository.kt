@@ -20,8 +20,9 @@ interface CountriesRepository {
 @Singleton
 class ApiCountriesRepository
 @Inject constructor(
-        private val countriesApi: CountriesApi,
-        private val countriesDao: CountriesDao) : CountriesRepository {
+    private val countriesApi: CountriesApi,
+    private val countriesDao: CountriesDao
+) : CountriesRepository {
     override fun all(): Flowable<List<Country>> {
         return countriesDao.countries().onErrorReturnItem(ArrayList())
                 .concatWith(
@@ -48,4 +49,3 @@ interface CountriesDao {
 }
 
 data class CountriesResponse(val countries: List<Country>)
-

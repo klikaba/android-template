@@ -137,7 +137,7 @@ class SessionRepositoryImplSpek : Spek({
                     logoutObserver.awaitTerminalEvent()
                 }
 
-                it ("should delete token") {
+                it("should delete token") {
                     assertNull(tokenStorage.readToken())
                 }
             }
@@ -154,7 +154,7 @@ class SessionRepositoryImplSpek : Spek({
                     sessionObserver.awaitTerminalEvent()
                 }
 
-                it ("should return true") {
+                it("should return true") {
                     sessionObserver
                             .assertComplete()
                             .assertValue(true)
@@ -172,7 +172,7 @@ class SessionRepositoryImplSpek : Spek({
                     sessionObserver.awaitTerminalEvent()
                 }
 
-                it ("should return false") {
+                it("should return false") {
                     sessionObserver
                             .assertComplete()
                             .assertValue(false)

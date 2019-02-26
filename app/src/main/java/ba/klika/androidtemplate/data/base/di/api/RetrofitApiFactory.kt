@@ -5,8 +5,6 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
-import javax.inject.Inject
-import javax.inject.Singleton
 
 /**
  * Implementation of [ApiFactory] providing instances using Retrofit2
@@ -14,8 +12,8 @@ import javax.inject.Singleton
  */
 class RetrofitApiFactory
 constructor(
-        private val okHttpClient: OkHttpClient,
-        private val networkConfig: NetworkConfig
+    private val okHttpClient: OkHttpClient,
+    private val networkConfig: NetworkConfig
 ) : ApiFactory {
 
     /**

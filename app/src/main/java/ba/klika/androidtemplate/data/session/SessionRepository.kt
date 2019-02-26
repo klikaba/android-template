@@ -20,9 +20,11 @@ interface SessionRepository {
 }
 
 class SessionRepositoryImpl
-@Inject constructor(@param:Authenticated(false) private val oAuth2TokenApi: OAuth2TokenApi,
-                    private val oAuth2TokenStorage: OAuth2TokenStorage,
-                    private val oAuth2RequestFactory: OAuth2RequestFactory) : SessionRepository {
+@Inject constructor(
+    @param:Authenticated(false) private val oAuth2TokenApi: OAuth2TokenApi,
+    private val oAuth2TokenStorage: OAuth2TokenStorage,
+    private val oAuth2RequestFactory: OAuth2RequestFactory
+) : SessionRepository {
     override fun logIn(credentials: Credentials): Completable {
         return oAuth2TokenApi.createToken(
                 oAuth2RequestFactory.makeCreateTokenRequest(

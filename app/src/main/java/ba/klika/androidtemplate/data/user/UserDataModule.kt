@@ -16,7 +16,8 @@ abstract class UserDataModule {
     @Binds
     @Singleton
     abstract fun provideDefaultUserRepository(
-            apiUserRepository: ApiUserRepository): UserRepository
+        apiUserRepository: ApiUserRepository
+    ): UserRepository
 
     @Module
     companion object {

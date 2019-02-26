@@ -77,7 +77,6 @@ class MainActivity : BaseBoundActivity<MainViewModel>(), NavigationView.OnNaviga
         // as you specify a parent activity in AndroidManifest.xml.
         val id = item.itemId
 
-
         if (id == R.id.action_log_out) {
             viewModel.onLogOutClick()
             return true
@@ -93,15 +92,10 @@ class MainActivity : BaseBoundActivity<MainViewModel>(), NavigationView.OnNaviga
         if (id == R.id.nav_camera) {
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {
-
         } else if (id == R.id.nav_slideshow) {
-
         } else if (id == R.id.nav_manage) {
-
         } else if (id == R.id.nav_share) {
-
         } else if (id == R.id.nav_send) {
-
         }
 
         drawer_layout.closeDrawer(GravityCompat.START)

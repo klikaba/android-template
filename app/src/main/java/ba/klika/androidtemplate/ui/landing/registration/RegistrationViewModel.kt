@@ -16,9 +16,10 @@ import javax.inject.Inject
  */
 class RegistrationViewModel
 @Inject constructor(
-        private val userRepository: UserRepository,
-        private val sessionRepository: SessionRepository,
-        schedulingProvider: SchedulingProvider) : BaseViewModel(schedulingProvider) {
+    private val userRepository: UserRepository,
+    private val sessionRepository: SessionRepository,
+    schedulingProvider: SchedulingProvider
+) : BaseViewModel(schedulingProvider) {
 
     val username = MutableLiveData<String>()
     val password = MutableLiveData<String>()
