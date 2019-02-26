@@ -28,7 +28,7 @@ class SplashActivity : BaseBoundActivity<SplashViewModel>() {
 
     override fun bindToViewModel() {
         viewModel.navigationEvent.observe(this, Observer {
-            when(it) {
+            when (it) {
                 SplashViewModel.NavigationEvent.MAIN ->
                     startActivity(Intent(this, MainActivity::class.java))
                 SplashViewModel.NavigationEvent.LANDING ->
@@ -40,8 +40,9 @@ class SplashActivity : BaseBoundActivity<SplashViewModel>() {
 
 class SplashViewModel
 @Inject constructor(
-        private val sessionRepository: SessionRepository,
-        schedulingProvider: SchedulingProvider) : BaseViewModel(schedulingProvider) {
+    private val sessionRepository: SessionRepository,
+    schedulingProvider: SchedulingProvider
+) : BaseViewModel(schedulingProvider) {
 
     enum class NavigationEvent {
         MAIN,

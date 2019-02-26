@@ -23,8 +23,10 @@ import javax.inject.Inject
  * @author Ensar Sarajčić <ensar.sarajcic@klika.ba>.
  */
 class OAuth2Authenticator
-@Inject constructor(private val oAuth2TokenStorage: OAuth2TokenStorage,
-                    private val oAuth2TokenRefresher: OAuth2TokenRefresher) : Authenticator {
+@Inject constructor(
+    private val oAuth2TokenStorage: OAuth2TokenStorage,
+    private val oAuth2TokenRefresher: OAuth2TokenRefresher
+) : Authenticator {
 
     @Nullable
     @Throws(IOException::class)
@@ -79,7 +81,6 @@ class OAuth2Authenticator
         newToken = oAuth2TokenRefresher.refreshToken()
         // retry with new token
         return retryWithToken(response, newToken.accessToken)
-
     }
 
     private fun retryWithToken(response: Response, accessToken: String): Request {

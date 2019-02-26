@@ -19,4 +19,3 @@ fun List<Country>.toRowModels(rowClickListener: CountryRowModel.RowClickListener
 fun Country.toRowModel(rowClickListener: CountryRowModel.RowClickListener): CountryRowModel {
     return CountryRowModel(this, rowClickListener)
 }
-

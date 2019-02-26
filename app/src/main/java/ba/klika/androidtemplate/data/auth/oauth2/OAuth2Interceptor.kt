@@ -14,8 +14,10 @@ import javax.inject.Inject
  */
 
 class OAuth2Interceptor
-@Inject constructor(private val oAuth2TokenStorage: OAuth2TokenStorage,
-                    private val oAuth2TokenRefresher: OAuth2TokenRefresher) : Interceptor {
+@Inject constructor(
+    private val oAuth2TokenStorage: OAuth2TokenStorage,
+    private val oAuth2TokenRefresher: OAuth2TokenRefresher
+) : Interceptor {
 
     @Throws(IOException::class)
     override fun intercept(@NonNull chain: Interceptor.Chain): Response? {
@@ -33,7 +35,6 @@ class OAuth2Interceptor
             // has token expired?
             if (oAuth2Token.expired()) {
                 oAuth2Token = oAuth2TokenRefresher.refreshToken()
-
             }
 
             request = request.newBuilder()
@@ -48,5 +49,4 @@ class OAuth2Interceptor
     companion object {
         private const val AUTH_HEADER = "Authorization"
     }
-
 }
