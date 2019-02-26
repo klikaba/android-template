@@ -1,0 +1,5 @@
+#!/bin/sh
+overcommit --install
+overcommit --sign
+overcommit --sign pre-commit
+brew tap shyiko/ktlint && brew install shyiko/ktlint/ktlint
