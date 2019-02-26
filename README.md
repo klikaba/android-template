@@ -7,7 +7,18 @@ This template provides starting point for Kotlin Android app, following Klika qu
 ### Dependencies
 
 * Latest Android Studio
-> TODO - Add setup script
+* Homebrew (for setup script - required for installation of ktlint)
+* Ruby + overcommit gem
+
+```
+scripts/setup
+```
+
+This script will:
+ * Setup overcommit hooks
+ * Install ktlint (required for hooks)
+
+Android lint is recommended to be run only on CI, since it can be slow for larger projects, while ktlint can be run on every commit.
 
 ### Configuration
 
