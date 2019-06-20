@@ -131,7 +131,6 @@ abstract class NetworkModule {
     }
 
     @Multibinds
-    @Singleton
     @Authenticated(false)
     abstract fun bindEmptyUnauthenticatedInterceptors(): Set<@JvmSuppressWildcards Interceptor>
 
