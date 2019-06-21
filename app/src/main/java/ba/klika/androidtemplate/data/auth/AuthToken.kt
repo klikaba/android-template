@@ -1,6 +1,7 @@
 package ba.klika.androidtemplate.data.auth
 
-import java.util.*
+import java.util.Calendar
+import java.util.TimeZone
 
 /**
  * Interface representing a simple authentication token that can be added to calls
@@ -28,7 +29,7 @@ interface RefreshableAuthToken : AuthToken {
  * Token that can expire
  * @author Ensar Sarajčić <ensar.sarajcic@klika.ba>.
  */
-interface ExpirableAuthToken : AuthToken{
+interface ExpirableAuthToken : AuthToken {
     fun expired(): Boolean
 }
 

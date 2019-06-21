@@ -90,9 +90,9 @@ class ApiCountriesRepositorySpek : Spek({
                     countriesObserver.assertComplete()
                             .assertValueCount(2)
                             .assertValueAt(1) {
-                                it.size == 2
-                                        && it[0].let { country -> country.name == "BiH" && country.code == "BA" }
-                                        && it[1].let { country -> country.name == "USA" && country.code == "US" }
+                                it.size == 2 &&
+                                        it[0].let { country -> country.name == "BiH" && country.code == "BA" } &&
+                                        it[1].let { country -> country.name == "USA" && country.code == "US" }
                             }
                     Mockito.verify(countriesApi).all()
                 }
@@ -101,8 +101,8 @@ class ApiCountriesRepositorySpek : Spek({
                     countriesObserver.assertComplete()
                             .assertValueCount(2)
                             .assertValueAt(0) {
-                                it.size == 1
-                                        && it[0].let { country -> country.name == "BiH" && country.code == "BA" }
+                                it.size == 1 &&
+                                        it[0].let { country -> country.name == "BiH" && country.code == "BA" }
                             }
                     Mockito.verify(countriesDao).countries()
                 }
@@ -180,8 +180,8 @@ class ApiCountriesRepositorySpek : Spek({
                     countriesObserver
                             .assertValueCount(1)
                             .assertValueAt(0) {
-                                it.size == 1
-                                        && it[0].let { country -> country.name == "BiH" && country.code == "BA" }
+                                it.size == 1 &&
+                                        it[0].let { country -> country.name == "BiH" && country.code == "BA" }
                             }
                     Mockito.verify(countriesDao).countries()
                 }

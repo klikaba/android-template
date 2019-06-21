@@ -30,7 +30,8 @@ abstract class OAuth2Module {
     @Binds
     @Singleton
     abstract fun provideDefaultOAuth2TokenApi(
-            @Authenticated(false) oAuth2TokenApi: OAuth2TokenApi): OAuth2TokenApi
+        @Authenticated(false) oAuth2TokenApi: OAuth2TokenApi
+    ): OAuth2TokenApi
 
     @Module
     companion object {
@@ -39,7 +40,7 @@ abstract class OAuth2Module {
         @Authenticated(true)
         @JvmStatic
         fun provideAuthenticatedOAuth2TokenApi(
-                @Authenticated(true) apiFactory: ApiFactory
+            @Authenticated(true) apiFactory: ApiFactory
         ): OAuth2TokenApi = apiFactory.buildApi(OAuth2TokenApi::class.java)
 
         @Provides
@@ -47,7 +48,7 @@ abstract class OAuth2Module {
         @Authenticated(false)
         @JvmStatic
         fun provideUnauthenticatedOAuth2TokenApi(
-                @Authenticated(false) apiFactory: ApiFactory
+            @Authenticated(false) apiFactory: ApiFactory
         ): OAuth2TokenApi = apiFactory.buildApi(OAuth2TokenApi::class.java)
     }
 }

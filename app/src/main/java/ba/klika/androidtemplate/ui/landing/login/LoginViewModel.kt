@@ -14,8 +14,9 @@ import javax.inject.Inject
  */
 class LoginViewModel
 @Inject constructor(
-        private val sessionRepository: SessionRepository,
-        schedulingProvider: SchedulingProvider) : BaseViewModel(schedulingProvider) {
+    private val sessionRepository: SessionRepository,
+    schedulingProvider: SchedulingProvider
+) : BaseViewModel(schedulingProvider) {
 
     val username = MutableLiveData<String>()
     val password = MutableLiveData<String>()

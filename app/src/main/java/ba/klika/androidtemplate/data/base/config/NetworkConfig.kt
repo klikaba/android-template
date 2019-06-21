@@ -17,7 +17,7 @@ interface NetworkConfig {
 
 @Singleton
 class DefaultNetworkConfig
-@Inject constructor(): NetworkConfig {
+@Inject constructor() : NetworkConfig {
     override val baseUrl: String = BuildConfig.baseUrl
     override val connectTimeoutInMs: Long = DEFAULT_TIMEOUT_MS
     override val readTimeoutInMs: Long = DEFAULT_TIMEOUT_MS

@@ -16,7 +16,8 @@ abstract class CountriesDataModule {
     @Binds
     @Singleton
     abstract fun provideDefaultCountriesRepository(
-            apiCountriesRepository: ApiCountriesRepository): CountriesRepository
+        apiCountriesRepository: ApiCountriesRepository
+    ): CountriesRepository
 
     @Module
     companion object {

@@ -11,14 +11,15 @@ import java.util.Date
  */
 @Entity
 data class User(
-        @field:PrimaryKey
-        @field:NonNull
-        val id: Int,
-        val email: String,
-        @field:SerializedName("created_at")
-        val createdAt: Date,
-        @field:SerializedName("updated_at")
-        val updatedAt: Date,
-        val role: String)
+    @field:PrimaryKey
+    @field:NonNull
+    val id: Int,
+    val email: String,
+    @field:SerializedName("created_at")
+    val createdAt: Date,
+    @field:SerializedName("updated_at")
+    val updatedAt: Date,
+    val role: String
+)
 
 data class RegistrationInfo(val email: String, val password: String)

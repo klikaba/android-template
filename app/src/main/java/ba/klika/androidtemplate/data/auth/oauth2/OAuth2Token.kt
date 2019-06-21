@@ -8,14 +8,16 @@ import com.google.gson.annotations.SerializedName
  * Should not contain null tokens and should be safe to use
  * @author Ensar Sarajčić <ensar.sarajcic@klika.ba>.
  */
-class OAuth2Token(@field:SerializedName("expires_in")
-                  val expirationPeriod: Long,
-                  @field:SerializedName("created_at")
-                  val createdAt: Long,
-                  @field:SerializedName("access_token")
-                  val accessToken: String,
-                  @field:SerializedName("refresh_token")
-                  val refreshToken: String) : RefreshableSetTimeExpirableAuthToken {
+class OAuth2Token(
+    @field:SerializedName("expires_in")
+    val expirationPeriod: Long,
+    @field:SerializedName("created_at")
+    val createdAt: Long,
+    @field:SerializedName("access_token")
+    val accessToken: String,
+    @field:SerializedName("refresh_token")
+    val refreshToken: String
+) : RefreshableSetTimeExpirableAuthToken {
 
     override val stringValue: String = accessToken
 

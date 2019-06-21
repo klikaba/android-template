@@ -20,6 +20,5 @@ class CountryRowModel(private val country: Country, private val rowClickListener
     interface RowClickListener {
 
         fun onRowClicked(country: Country)
-
     }
 }

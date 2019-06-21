@@ -15,7 +15,7 @@ interface TokenStorage<TOKEN_TYPE : AuthToken> {
 }
 
 class BasicTokenStorage
-@Inject constructor(private val simpleKeyValueStore: SimpleKeyValueStore): TokenStorage<BasicAuthToken> {
+@Inject constructor(private val simpleKeyValueStore: SimpleKeyValueStore) : TokenStorage<BasicAuthToken> {
 
     override fun readToken(): BasicAuthToken? {
         return simpleKeyValueStore.readString(ACCESS_TOKEN_KEY)?.let {

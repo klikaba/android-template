@@ -11,8 +11,9 @@ import javax.inject.Inject
  */
 class MainViewModel
 @Inject constructor(
-        private val sessionRepository: SessionRepository,
-        schedulingProvider: SchedulingProvider): BaseViewModel(schedulingProvider) {
+    private val sessionRepository: SessionRepository,
+    schedulingProvider: SchedulingProvider
+) : BaseViewModel(schedulingProvider) {
 
     val landingNavigationTrigger = SingleLiveEvent<Void>()
 

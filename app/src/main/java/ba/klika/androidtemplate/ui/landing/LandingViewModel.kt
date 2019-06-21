@@ -1,7 +1,6 @@
 package ba.klika.androidtemplate.ui.landing
 
 import android.view.View
-import androidx.lifecycle.MutableLiveData
 import ba.klika.androidtemplate.scheduling.SchedulingProvider
 import ba.klika.androidtemplate.ui.base.viewmodel.BaseViewModel
 import ba.klika.androidtemplate.ui.base.viewmodel.SingleLiveEvent

@@ -4,7 +4,6 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import ba.klika.androidtemplate.data.session.Credentials
 import io.reactivex.Flowable
 import io.reactivex.Single
 import retrofit2.http.Body
@@ -26,8 +25,9 @@ interface UserRepository {
 @Singleton
 class ApiUserRepository
 @Inject constructor(
-        private val userApi: UserApi,
-        private val usersDao: UsersDao) : UserRepository {
+    private val userApi: UserApi,
+    private val usersDao: UsersDao
+) : UserRepository {
     override fun get(id: Int): Flowable<User> {
         return usersDao.user(id)
                 // For now, return fake data when cache is empty
