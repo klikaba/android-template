@@ -106,6 +106,7 @@ dependencies {
     implementation "androidx.appcompat:appcompat:$appCompatVersion"
     implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
     implementation "androidx.annotation:annotation:$androidAnnotationVersion"
+    implementation "androidx.activity:activity-ktx:$androidXActivity"
     implementation "android.arch.navigation:navigation-fragment-ktx:$navigationVersion"
     implementation "android.arch.navigation:navigation-ui-ktx:$navigationVersion"
     implementation "androidx.recyclerview:recyclerview:$recyclerViewVersion"
