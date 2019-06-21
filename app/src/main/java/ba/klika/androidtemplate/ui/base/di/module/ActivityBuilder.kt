@@ -33,4 +33,3 @@ abstract class ActivityBuilder {
     @ContributesAndroidInjector(modules = [MainModule::class, MainFragmentBuilder::class])
     abstract fun provideMainActivity(): MainActivity
 }
-

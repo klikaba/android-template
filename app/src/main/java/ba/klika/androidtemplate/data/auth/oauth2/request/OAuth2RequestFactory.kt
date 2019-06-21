@@ -10,8 +10,10 @@ import javax.inject.Inject
 class OAuth2RequestFactory
 @Inject constructor(private val clientConfig: ClientConfig) {
 
-    fun makeCreateTokenRequest(username: String,
-                               password: String): OAuth2CreateTokenRequest {
+    fun makeCreateTokenRequest(
+        username: String,
+        password: String
+    ): OAuth2CreateTokenRequest {
         return OAuth2CreateTokenRequest(
                 username,
                 password,

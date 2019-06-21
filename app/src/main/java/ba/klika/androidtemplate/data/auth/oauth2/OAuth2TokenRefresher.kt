@@ -11,10 +11,11 @@ import kotlin.NullPointerException
  */
 class OAuth2TokenRefresher
 @Inject constructor(
-        private val tokenStorage: OAuth2TokenStorage,
-        private val oAuth2RequestFactory: OAuth2RequestFactory,
-        @Authenticated(true)
-        private val oAuth2TokenApi: Lazy<@JvmSuppressWildcards OAuth2TokenApi>) {
+    private val tokenStorage: OAuth2TokenStorage,
+    private val oAuth2RequestFactory: OAuth2RequestFactory,
+    @Authenticated(true)
+    private val oAuth2TokenApi: Lazy<@JvmSuppressWildcards OAuth2TokenApi>
+) {
 
     fun refreshToken(): OAuth2Token {
         var newToken: OAuth2Token?

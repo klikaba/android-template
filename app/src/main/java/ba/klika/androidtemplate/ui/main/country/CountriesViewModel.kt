@@ -12,8 +12,9 @@ import javax.inject.Inject
  */
 class CountriesViewModel
 @Inject constructor(
-        private val countriesRepository: CountriesRepository,
-        schedulingProvider: SchedulingProvider) : BaseViewModel(schedulingProvider) {
+    private val countriesRepository: CountriesRepository,
+    schedulingProvider: SchedulingProvider
+) : BaseViewModel(schedulingProvider) {
 
     val countries = MutableLiveData<List<Country>>()
 

@@ -13,5 +13,6 @@ abstract class SessionModule {
     @Binds
     @Singleton
     abstract fun provideDefaultSessionRepository(
-            sessionRepositoryImpl: SessionRepositoryImpl): SessionRepository
+        sessionRepositoryImpl: SessionRepositoryImpl
+    ): SessionRepository
 }

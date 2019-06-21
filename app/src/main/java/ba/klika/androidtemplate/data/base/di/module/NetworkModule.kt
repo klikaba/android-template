@@ -64,13 +64,14 @@ abstract class NetworkModule {
         @Singleton
         @JvmStatic
         @Authenticated(false)
-        fun provideUnAuthenticatedOkHttpClient(networkConfig: NetworkConfig,
-                                @Authenticated(false)
-                                authenticator: Authenticator,
-                                dispatcher: Dispatcher,
-                                @Authenticated(false)
-                                unauthenticatedInterceptors: Set<@JvmSuppressWildcards Interceptor>,
-                                interceptors: Set<@JvmSuppressWildcards Interceptor>
+        fun provideUnAuthenticatedOkHttpClient(
+            networkConfig: NetworkConfig,
+            @Authenticated(false)
+            authenticator: Authenticator,
+            dispatcher: Dispatcher,
+            @Authenticated(false)
+            unauthenticatedInterceptors: Set<@JvmSuppressWildcards Interceptor>,
+            interceptors: Set<@JvmSuppressWildcards Interceptor>
         ): OkHttpClient = createOkHttpClient(
         networkConfig,
         authenticator,
@@ -81,23 +82,26 @@ abstract class NetworkModule {
         @Singleton
         @JvmStatic
         @Authenticated(true)
-        fun provideAuthenticatedOkHttpClient(networkConfig: NetworkConfig,
-                                @Authenticated(true)
-                                authenticator: Authenticator,
-                                dispatcher: Dispatcher,
-                                @Authenticated(true)
-                                authenticatedInterceptors: Set<@JvmSuppressWildcards Interceptor>,
-                                interceptors: Set<@JvmSuppressWildcards Interceptor>
+        fun provideAuthenticatedOkHttpClient(
+            networkConfig: NetworkConfig,
+            @Authenticated(true)
+            authenticator: Authenticator,
+            dispatcher: Dispatcher,
+            @Authenticated(true)
+            authenticatedInterceptors: Set<@JvmSuppressWildcards Interceptor>,
+            interceptors: Set<@JvmSuppressWildcards Interceptor>
         ): OkHttpClient = createOkHttpClient(
                 networkConfig,
                 authenticator,
                 dispatcher,
                 interceptors.union(authenticatedInterceptors))
 
-        private fun createOkHttpClient(networkConfig: NetworkConfig,
-                                       authenticator: Authenticator,
-                                       dispatcher: Dispatcher,
-                                       interceptors: Set<@JvmSuppressWildcards Interceptor>): OkHttpClient {
+        private fun createOkHttpClient(
+            networkConfig: NetworkConfig,
+            authenticator: Authenticator,
+            dispatcher: Dispatcher,
+            interceptors: Set<@JvmSuppressWildcards Interceptor>
+        ): OkHttpClient {
             val builder: OkHttpClient.Builder = OkHttpClient.Builder()
                     .authenticator(authenticator)
                     .dispatcher(dispatcher)
@@ -116,8 +120,8 @@ abstract class NetworkModule {
         @JvmStatic
         @Authenticated(true)
         fun provideAuthenticatedRetrofitApiFactory(
-                @Authenticated(true) okHttpClient: OkHttpClient,
-                networkConfig: NetworkConfig
+            @Authenticated(true) okHttpClient: OkHttpClient,
+            networkConfig: NetworkConfig
         ): ApiFactory = RetrofitApiFactory(okHttpClient, networkConfig)
 
         @Provides
@@ -125,8 +129,8 @@ abstract class NetworkModule {
         @JvmStatic
         @Authenticated(false)
         fun provideUnauthenticatedRetrofitApiFactory(
-                @Authenticated(false) okHttpClient: OkHttpClient,
-                networkConfig: NetworkConfig
+            @Authenticated(false) okHttpClient: OkHttpClient,
+            networkConfig: NetworkConfig
         ): ApiFactory = RetrofitApiFactory(okHttpClient, networkConfig)
     }
 
@@ -152,4 +156,3 @@ abstract class NetworkModule {
 @MustBeDocumented
 @Retention(AnnotationRetention.RUNTIME)
 annotation class Authenticated(val isAuthenticated: Boolean)
-

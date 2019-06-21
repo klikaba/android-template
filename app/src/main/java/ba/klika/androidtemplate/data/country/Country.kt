@@ -9,7 +9,8 @@ import androidx.room.PrimaryKey
  */
 @Entity
 data class Country(
-        val name: String,
-        @field:PrimaryKey
-        @field:NonNull
-        val code: String)
+    val name: String,
+    @field:PrimaryKey
+    @field:NonNull
+    val code: String
+)

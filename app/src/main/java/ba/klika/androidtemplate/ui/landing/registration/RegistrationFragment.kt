@@ -27,7 +27,7 @@ class RegistrationFragment : BaseBoundFragment<RegistrationViewModel>() {
 
     override fun bindToViewModel() {
         viewModel.navigationTrigger.observe(viewLifecycleOwner, Observer {
-            when(it) {
+            when (it) {
                 SimpleNavigationAction.NEXT -> {
                     activity?.startActivity(Intent(activity, MainActivity::class.java))
                     activity?.finish()
