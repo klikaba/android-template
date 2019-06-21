@@ -8,7 +8,6 @@ import dagger.Module
 import dagger.multibindings.Multibinds
 import javax.inject.Inject
 import javax.inject.Provider
-import javax.inject.Singleton
 import kotlin.IllegalArgumentException
 import kotlin.reflect.KClass
 
@@ -42,6 +41,5 @@ abstract class ViewModelFactoryModule {
     abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
 
     @Multibinds
-    @Singleton
     abstract fun bindViewModelProviders(): Map<Class<out ViewModel>, ViewModel>
 }
