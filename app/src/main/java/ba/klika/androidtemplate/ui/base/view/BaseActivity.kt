@@ -4,13 +4,14 @@ import android.os.Bundle
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.lifecycle.LifecycleOwner
 import dagger.android.support.DaggerAppCompatActivity
 
 /**
  * Base activity for all activities
  * @author Ensar Sarajčić <ensar.sarajcic@klika.ba>.
  */
-abstract class BaseActivity : DaggerAppCompatActivity() {
+abstract class BaseActivity : DaggerAppCompatActivity(), LifecycleOwner {
     /**
      * Provides layout id of this view
      */

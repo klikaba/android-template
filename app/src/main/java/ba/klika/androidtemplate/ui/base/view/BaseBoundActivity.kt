@@ -38,7 +38,7 @@ abstract class BaseBoundActivity<VIEW_MODEL_TYPE : BaseViewModel>
             val viewModelRId = viewModelNameRId
             if (viewModelRId != 0) {
                 it.setVariable(viewModelRId, viewModel)
-                it.setLifecycleOwner(this)
+                it.lifecycleOwner = this
                 it.executePendingBindings()
             }
         }
