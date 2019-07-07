@@ -14,7 +14,7 @@
     </style>
 
     <style name="AppTheme.Splash">
-        <item name="android:windowBackground">@drawable/splash_background</item>
+        <item name="android:windowBackground">@drawable/bg_splash</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
