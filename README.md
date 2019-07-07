@@ -34,6 +34,10 @@ Use Klika quality guidelines for general development references.
 
 This project is following **official Kotlin codestyle**, which is also enforced by [ktlint](https://github.com/shyiko/ktlint). It follows both codestyle from [kotlinlang.org](https://kotlinlang.org/docs/reference/coding-conventions.html) and [Android Kotlin styleguide](https://developer.android.com/kotlin/style-guide).
 
+### Naming guidelines
+
+This project is following naming conventions from [ribot android guidelines](https://github.com/ribot/android-guidelines/blob/master/project_and_code_guidelines.md).
+
 ### New feature
 
 Use [GitFlow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow) development workflow with tests included.
