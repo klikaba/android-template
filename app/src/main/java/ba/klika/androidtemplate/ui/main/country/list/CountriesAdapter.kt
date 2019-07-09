@@ -7,7 +7,7 @@ import java.util.ArrayList
 
 import androidx.recyclerview.widget.RecyclerView
 import ba.klika.androidtemplate.data.country.Country
-import ba.klika.androidtemplate.databinding.CountryRowBinding
+import ba.klika.androidtemplate.databinding.ItemCountryBinding
 
 /**
  * @author Ensar Sarajčić <ensar.sarajcic@klika.ba>.
@@ -18,7 +18,7 @@ class CountriesAdapter : RecyclerView.Adapter<CountryViewHolder>(), CountryRowMo
     private var rowClickListener: CountryRowModel.RowClickListener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CountryViewHolder {
-        return CountryViewHolder(CountryRowBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+        return CountryViewHolder(ItemCountryBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
     override fun onBindViewHolder(holder: CountryViewHolder, position: Int) {
