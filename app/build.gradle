@@ -93,6 +93,10 @@ android {
             includeAndroidResources = true
         }
     }
+
+    packagingOptions {
+        exclude "META-INF/LICENSE*"
+    }
 }
 
 dependencies {
@@ -157,7 +161,9 @@ dependencies {
     androidTestImplementation "androidx.test:runner:$testRunnerVersion"
     androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
     androidTestImplementation "androidx.room:room-testing:$roomVersion"
-    androidTestRuntimeOnly "de.mannodermaus.junit5:android-instrumentation-test-runner:$junit5RunnerVersion"
+    androidTestImplementation "org.junit.jupiter:junit-jupiter-api:5.4.1"
+    androidTestImplementation "de.mannodermaus.junit5:android-test-core:1.0.0"
+    androidTestRuntimeOnly "de.mannodermaus.junit5:android-test-runner:1.0.0"
 }
 
 kapt {
