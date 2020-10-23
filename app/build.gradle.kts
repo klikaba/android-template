@@ -11,7 +11,7 @@ plugins {
 
 tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile::class).configureEach {
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8.toString()
+        jvmTarget = Dependencies.Language.Versions.javaTargetCompatibility.toString()
     }
 }
 
@@ -53,8 +53,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = Dependencies.Language.Versions.javaSourceCompatibility
+        targetCompatibility = Dependencies.Language.Versions.javaTargetCompatibility
     }
 
     testOptions {
