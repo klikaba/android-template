@@ -6,7 +6,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.OnLifecycleEvent
 import androidx.lifecycle.ViewModel
 import ba.klika.androidtemplate.data.session.SessionRepository
-import ba.klika.androidtemplate.scheduling.SchedulingProvider
+import ba.klika.androidtemplate.scheduling.DispatcherProvider
 import ba.klika.androidtemplate.ui.base.di.viewmodel.ViewModelKey
 import ba.klika.androidtemplate.ui.base.view.BaseBoundActivity
 import ba.klika.androidtemplate.ui.base.viewmodel.BaseViewModel
@@ -27,22 +27,22 @@ class SplashActivity : BaseBoundActivity<SplashViewModel>() {
         get() = SplashViewModel::class.java
 
     override fun bindToViewModel() {
-        viewModel.navigationEvent.observe(this, Observer {
+        viewModel.navigationEvent.observe(this) {
             when (it) {
                 SplashViewModel.NavigationEvent.MAIN ->
                     startActivity(Intent(this, MainActivity::class.java))
                 SplashViewModel.NavigationEvent.LANDING ->
                     startActivity(Intent(this, LandingActivity::class.java))
             }
-        })
+        }
     }
 }
 
 class SplashViewModel
 @Inject constructor(
-    private val sessionRepository: SessionRepository,
-    schedulingProvider: SchedulingProvider
-) : BaseViewModel(schedulingProvider) {
+        private val sessionRepository: SessionRepository,
+        dispatcherProvider: DispatcherProvider
+) : BaseViewModel(dispatcherProvider) {
 
     enum class NavigationEvent {
         MAIN,
@@ -53,13 +53,15 @@ class SplashViewModel
 
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     fun onStart() {
-        sessionRepository.hasSession().asIOCall().subscribe { it: Boolean ->
-            if (it) {
-                navigationEvent.postValue(NavigationEvent.MAIN)
-            } else {
-                navigationEvent.postValue(NavigationEvent.LANDING)
+        runIo {
+            sessionRepository.hasSession().also {
+                if (it) {
+                    navigationEvent.postValue(NavigationEvent.MAIN)
+                } else {
+                    navigationEvent.postValue(NavigationEvent.LANDING)
+                }
             }
-        }.disposeOnClear()
+        }
     }
 }
 
