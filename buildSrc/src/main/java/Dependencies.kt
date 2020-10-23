@@ -1,9 +1,11 @@
+import org.gradle.api.JavaVersion
+
 object Dependencies {
     object Language {
         object Versions {
             const val kotlinVersion = "1.4.10"
-            const val javaSourceCompatibility = "1.8"
-            const val javaTargetCompatibility = "1.8"
+            val javaSourceCompatibility = JavaVersion.VERSION_1_8
+            val javaTargetCompatibility = JavaVersion.VERSION_1_8
         }
         const val kotlinGradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlinVersion}"
         const val kotlinStdLib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlinVersion}"
