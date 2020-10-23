@@ -3,7 +3,7 @@ package ba.klika.androidtemplate.ui.landing.login
 import androidx.lifecycle.MutableLiveData
 import ba.klika.androidtemplate.data.session.Credentials
 import ba.klika.androidtemplate.data.session.SessionRepository
-import ba.klika.androidtemplate.scheduling.SchedulingProvider
+import ba.klika.androidtemplate.scheduling.DispatcherProvider
 import ba.klika.androidtemplate.ui.base.SimpleNavigationAction
 import ba.klika.androidtemplate.ui.base.viewmodel.BaseViewModel
 import ba.klika.androidtemplate.ui.base.viewmodel.SingleLiveEvent
@@ -14,9 +14,9 @@ import javax.inject.Inject
  */
 class LoginViewModel
 @Inject constructor(
-    private val sessionRepository: SessionRepository,
-    schedulingProvider: SchedulingProvider
-) : BaseViewModel(schedulingProvider) {
+        private val sessionRepository: SessionRepository,
+        dispatcherProvider: DispatcherProvider
+) : BaseViewModel(dispatcherProvider) {
 
     val username = MutableLiveData<String>()
     val password = MutableLiveData<String>()
@@ -24,11 +24,14 @@ class LoginViewModel
     val toastMessage = MutableLiveData<String>()
 
     fun onLoginClick() {
-        sessionRepository.logIn(
-                Credentials(username.value!!, password.value!!)
-        ).asIOCall().subscribe(
-                { navigationTrigger.postValue(SimpleNavigationAction.NEXT) },
-                { toastMessage.postValue("Failed") }
-        ).disposeOnClear()
+        runIo {
+            try {
+                sessionRepository.logIn(Credentials(username.value!!, password.value!!))
+                navigationTrigger.postValue(SimpleNavigationAction.NEXT)
+            } catch (e: Exception) {
+                e.printStackTrace()
+                toastMessage.postValue("Failed")
+            }
+        }
     }
 }

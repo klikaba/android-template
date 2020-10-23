@@ -35,7 +35,7 @@ class SessionRepositoryImplSpek : Spek({
         var refreshTokenBadResult: Single<OAuth2Token> = Single.error(IllegalStateException())
         private var refreshTokenCalls = ArrayList<OAuth2RefreshTokenRequest>()
 
-        override fun createToken(createTokenRequest: OAuth2CreateTokenRequest): Single<OAuth2Token> =
+        override suspend fun createToken(createTokenRequest: OAuth2CreateTokenRequest): OAuth2Token =
                 if (createTokenMatcher.matches(createTokenRequest)) {
                     createTokenGoodResult
                 } else {
@@ -44,7 +44,7 @@ class SessionRepositoryImplSpek : Spek({
                     createTokenCalls.add(createTokenRequest)
                 }
 
-        override fun refreshToken(refreshTokenRequest: OAuth2RefreshTokenRequest): Single<OAuth2Token> =
+        override suspend fun refreshToken(refreshTokenRequest: OAuth2RefreshTokenRequest): OAuth2Token =
                 if (refreshTokenMatcher.matches(refreshTokenRequest)) {
                     refreshTokenGoodResult
                 } else {

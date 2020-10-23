@@ -6,9 +6,11 @@ object Dependencies {
             const val kotlinVersion = "1.4.10"
             val javaSourceCompatibility = JavaVersion.VERSION_1_8
             val javaTargetCompatibility = JavaVersion.VERSION_1_8
+            const val kotlinCoroutinesVersion = "1.4.0-M1"
         }
         const val kotlinGradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlinVersion}"
         const val kotlinStdLib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlinVersion}"
+        const val kotlinCoroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.kotlinCoroutinesVersion}"
     }
 
     object Gradle {
@@ -20,15 +22,15 @@ object Dependencies {
 
     object AndroidX {
         object Versions {
-            const val appCompatVersion = "1.1.0-beta01"
-            const val androidXActivity = "1.0.0-beta01"
-            const val androidAnnotationVersion = "1.0.0"
-            const val recyclerViewVersion = "1.0.0"
+            const val appCompatVersion = "1.2.0"
+            const val androidXActivity = "1.1.0"
+            const val androidAnnotationVersion = "1.1.0"
+            const val recyclerViewVersion = "1.1.0"
             const val googleMaterialVersion = "1.0.0"
-            const val androidLifecycleVersion = "2.0.0"
-            const val constraintLayoutVersion = "2.0.0-beta4"
-            const val archComponentsVersion = "2.0.0-rc01"
-            const val navigationVersion = "1.0.0"
+            const val androidLifecycleVersion = "2.2.0"
+            const val constraintLayoutVersion = "2.0.2"
+            const val archComponentsVersion = "2.1.0"
+            const val navigationVersion = "2.3.1"
         }
         const val androidLifecycleCompiler = "androidx.lifecycle:lifecycle-compiler:${Versions.androidLifecycleVersion}"
         const val appCompat = "androidx.appcompat:appcompat:${Versions.appCompatVersion}"
@@ -45,14 +47,13 @@ object Dependencies {
 
     object Networking {
         object Versions {
-            const val okhttp3Version = "3.10.0"
-            const val retrofit2Version = "2.3.0"
+            const val okhttp3Version = "4.9.0"
+            const val retrofit2Version = "2.9.0"
         }
         const val okHttp3 = "com.squareup.okhttp3:okhttp:${Versions.okhttp3Version}"
         const val okHttp3Logging = "com.squareup.okhttp3:logging-interceptor:${Versions.okhttp3Version}"
         const val retrofit2 = "com.squareup.retrofit2:retrofit:${Versions.retrofit2Version}"
         const val retrofit2GsonConverter = "com.squareup.retrofit2:converter-gson:${Versions.retrofit2Version}"
-        const val retrofit2RxJava2Adapter = "com.squareup.retrofit2:adapter-rxjava2:${Versions.retrofit2Version}"
     }
 
     object Database {
@@ -61,7 +62,7 @@ object Dependencies {
         }
         const val roomCompiler = "androidx.room:room-compiler:${Versions.roomVersion}"
         const val roomRuntime = "androidx.room:room-runtime:${Versions.roomVersion}"
-        const val roomRxJava2 = "androidx.room:room-rxjava2:${Versions.roomVersion}"
+        const val roomKtx = "androidx.room:room-ktx:${Versions.roomVersion}"
     }
 
     object DependencyInjections {
@@ -77,15 +78,6 @@ object Dependencies {
         const val daggerAndroidSupport = "com.google.dagger:dagger-android-support:${Versions.daggerVersion}"
         const val javaxAnnotation = "javax.annotation:jsr250-api:${Versions.javaxAnnotationVersion}"
         const val javaxInject = "javax.inject:javax.inject:${Versions.javaxInjectVersion}"
-    }
-
-    object ReactiveX {
-        object Versions {
-            const val rxJava2Version = "2.1.9"
-            const val rxAndroidVersion = "2.1.1"
-        }
-        const val rxJava2 = "io.reactivex.rxjava2:rxjava:${Versions.rxJava2Version}"
-        const val rxAndroid = "io.reactivex.rxjava2:rxandroid:${Versions.rxAndroidVersion}"
     }
 
     object Other {

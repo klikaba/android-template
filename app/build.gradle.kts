@@ -102,6 +102,7 @@ tasks {
 
 dependencies {
     implementation(Dependencies.Language.kotlinStdLib)
+    implementation(Dependencies.Language.kotlinCoroutines)
 
     kapt(Dependencies.AndroidX.androidLifecycleCompiler)
     implementation(Dependencies.AndroidX.androidLifecycleExtensions)
@@ -115,18 +116,14 @@ dependencies {
     implementation(Dependencies.AndroidX.recyclerView)
     implementation(Dependencies.AndroidX.googleMaterial)
 
-    implementation(Dependencies.ReactiveX.rxJava2)
-    implementation(Dependencies.ReactiveX.rxAndroid)
-
     implementation(Dependencies.Networking.okHttp3)
     implementation(Dependencies.Networking.okHttp3Logging)
     implementation(Dependencies.Networking.retrofit2)
     implementation(Dependencies.Networking.retrofit2GsonConverter)
-    implementation(Dependencies.Networking.retrofit2RxJava2Adapter)
 
     kapt(Dependencies.Database.roomCompiler)
     implementation(Dependencies.Database.roomRuntime)
-    implementation(Dependencies.Database.roomRxJava2)
+    implementation(Dependencies.Database.roomKtx)
 
     implementation(Dependencies.Other.gson)
 

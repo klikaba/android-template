@@ -2,48 +2,24 @@ package ba.klika.androidtemplate.ui.base.viewmodel
 
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.ViewModel
-import ba.klika.androidtemplate.scheduling.SchedulingProvider
-import io.reactivex.Completable
-import io.reactivex.Flowable
-import io.reactivex.Maybe
-import io.reactivex.Observable
-import io.reactivex.Single
-import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.disposables.Disposable
+import androidx.lifecycle.viewModelScope
+import ba.klika.androidtemplate.scheduling.DispatcherProvider
+import kotlinx.coroutines.*
 
 /**
  * @author Ensar Sarajčić <ensar.sarajcic@klika.ba>.
  */
-abstract class BaseViewModel(protected val schedulingProvider: SchedulingProvider) : ViewModel(), LifecycleObserver {
-    private val compositeDisposable: CompositeDisposable = CompositeDisposable()
-
-    protected fun addDisposable(disposable: Disposable) = compositeDisposable.add(disposable)
-
-    protected fun Disposable.disposeOnClear() = addDisposable(this@disposeOnClear)
-
-    protected fun <T> Single<T>.asIOCall() = this@asIOCall.observeOn(schedulingProvider.main())
-            .subscribeOn(schedulingProvider.io())
-
-    protected fun Completable.asIOCall() = this@asIOCall.observeOn(schedulingProvider.main())
-            .subscribeOn(schedulingProvider.io())
-
-    protected fun <T> Maybe<T>.asIOCall() = this@asIOCall.observeOn(schedulingProvider.main())
-            .subscribeOn(schedulingProvider.io())
-
-    protected fun <T> Flowable<T>.asIOCall() = this@asIOCall.observeOn(schedulingProvider.main(), true) // Enforcing same order as coming from upstream
-            .subscribeOn(schedulingProvider.io())
-
-    protected fun <T> Observable<T>.asIOCall() = this@asIOCall.observeOn(schedulingProvider.main(), true) // Enforcing same order as coming from upstream
-            .subscribeOn(schedulingProvider.io())
-
-    /**
-     * Ensures that all added disposables are properly disposed
-     * Make sure to call super due to this!
-     */
-    override fun onCleared() {
-        super.onCleared()
-        if (!compositeDisposable.isDisposed) {
-            compositeDisposable.dispose()
+abstract class BaseViewModel(protected val dispatcherProvider: DispatcherProvider) : ViewModel(), LifecycleObserver {
+    protected fun runOn(coroutineDispatcher: CoroutineDispatcher, block: suspend CoroutineScope.() -> Unit) {
+        (viewModelScope + coroutineDispatcher).launch {
+            block()
         }
+    }
+
+    protected fun runIo(block: suspend CoroutineScope.() -> Unit) = runOn(dispatcherProvider.io(), block)
+
+    protected fun runComputation(block: suspend CoroutineScope.() -> Unit) = runOn(dispatcherProvider.computation(), block)
+    protected suspend fun CoroutineScope.runOnMain(block: CoroutineScope.() -> Unit) = withContext(dispatcherProvider.main()) {
+        block()
     }
 }

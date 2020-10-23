@@ -5,10 +5,11 @@ import ba.klika.androidtemplate.data.session.Credentials
 import ba.klika.androidtemplate.data.session.SessionRepository
 import ba.klika.androidtemplate.data.user.RegistrationInfo
 import ba.klika.androidtemplate.data.user.UserRepository
-import ba.klika.androidtemplate.scheduling.SchedulingProvider
+import ba.klika.androidtemplate.scheduling.DispatcherProvider
 import ba.klika.androidtemplate.ui.base.SimpleNavigationAction
 import ba.klika.androidtemplate.ui.base.viewmodel.BaseViewModel
 import ba.klika.androidtemplate.ui.base.viewmodel.SingleLiveEvent
+import java.lang.Exception
 import javax.inject.Inject
 
 /**
@@ -16,10 +17,10 @@ import javax.inject.Inject
  */
 class RegistrationViewModel
 @Inject constructor(
-    private val userRepository: UserRepository,
-    private val sessionRepository: SessionRepository,
-    schedulingProvider: SchedulingProvider
-) : BaseViewModel(schedulingProvider) {
+        private val userRepository: UserRepository,
+        private val sessionRepository: SessionRepository,
+        dispatcherProvider: DispatcherProvider
+) : BaseViewModel(dispatcherProvider) {
 
     val username = MutableLiveData<String>()
     val password = MutableLiveData<String>()
@@ -29,15 +30,15 @@ class RegistrationViewModel
     fun onRegisterClick() {
         val usernameValue = username.value
         val passwordValue = password.value
-        userRepository.create(
-                RegistrationInfo(usernameValue!!, passwordValue!!)
-        ).flatMapCompletable {
-            sessionRepository.logIn(
-                    Credentials(usernameValue, passwordValue)
-            )
-        }.asIOCall().subscribe(
-                { navigationTrigger.postValue(SimpleNavigationAction.NEXT) },
-                { toastMessage.postValue("Failed") }
-        ).disposeOnClear()
+        runIo {
+            try {
+                userRepository.create(RegistrationInfo(usernameValue!!, passwordValue!!))
+                sessionRepository.logIn(Credentials(usernameValue, passwordValue))
+                navigationTrigger.postValue(SimpleNavigationAction.NEXT)
+            } catch (e: Exception) {
+                e.printStackTrace()
+                toastMessage.postValue("Failed")
+            }
+        }
     }
 }
