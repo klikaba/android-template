@@ -58,9 +58,9 @@ Networking is implemented via [Retrofit](https://square.github.io/retrofit/), wi
 
 MVVM is implemented with help of [databinding](https://developer.android.com/topic/libraries/data-binding/) and [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) of [Android Architecture Components](https://developer.android.com/topic/libraries/architecture/).
 
-### Reactive with RxJava2
+### Reactive with Kotlin coroutines Flow
 
-Project is implemented with FRP (Functional Reactive Programming) using [RxJava2](https://github.com/ReactiveX/RxJava).
+Project is implemented with [Kotlin Coroutines + Flow](https://kotlinlang.org/docs/reference/coroutines/flow.html).
 
 ### Dependency injection with Dagger2
 
@@ -76,7 +76,7 @@ This template is using [ktlint](https://github.com/shyiko/ktlint) for static cod
 
 ### Testing
 
-We are using [Spek Framework](https://spekframework.org/).
+We are using [JUnit5 Framework](https://junit.org/junit5/docs/current/user-guide/).
 
 ### Continuous Integration
 
