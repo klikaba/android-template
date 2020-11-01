@@ -6,7 +6,6 @@ plugins {
     id("kotlin-android-extensions")
     id("kotlin-kapt")
     id("jacoco")
-    id("de.mannodermaus.android-junit5")
 }
 
 tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile::class).configureEach {
@@ -136,14 +135,15 @@ dependencies {
     implementation(Dependencies.DependencyInjections.javaxInject)
 
     testImplementation(Dependencies.Testing.junit)
-    testImplementation(Dependencies.Testing.mockito)
+    testImplementation(Dependencies.Testing.mockK)
     testImplementation(Dependencies.Testing.assertJ)
     testImplementation(Dependencies.Testing.robolectric)
     testImplementation(Dependencies.Testing.kotlinReflect)
     testImplementation(Dependencies.Testing.kotlinTest)
-    testImplementation(Dependencies.Testing.spekDslJvm)
-    testImplementation(Dependencies.Testing.spekRunnerJunit5)
+    testImplementation(Dependencies.Testing.kotlinCoroutinesTest)
     testImplementation(Dependencies.Testing.archCoreTesting)
+    testImplementation(Dependencies.Testing.jupiterApi)
+    testRuntimeOnly(Dependencies.Testing.jupiterEngine)
 }
 
 kapt {
