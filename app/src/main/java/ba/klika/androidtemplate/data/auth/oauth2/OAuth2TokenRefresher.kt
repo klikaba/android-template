@@ -28,7 +28,7 @@ class OAuth2TokenRefresher
                     oAuth2RequestFactory.makeRefreshTokenRequest(oldToken.refreshToken)
                 )
                 // Response body should not be null if it was successful
-                assert(newToken != null)
+                if (newToken == null) throw AssertionError("Response body should not be null if call was successful")
                 tokenStorage.saveToken(newToken!!)
                 newToken!!
             } else {
