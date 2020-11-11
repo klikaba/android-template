@@ -23,6 +23,7 @@ jobs:
       run: |
           ktlint --reporter=checkstyle,output=build/ktlint-report-in-checkstyle-format.xml
     - uses: yutailang0119/action-ktlint@v1.0.0
+      if: always()
       with:
         xml_path: build/ktlint-report-in-checkstyle-format.xml
     - name: Generate dummy configurations
@@ -32,6 +33,7 @@ jobs:
     - name: Android Lint with Gradle
       run: ./gradlew lint
     - uses: yutailang0119/action-android-lint@v1.0.2
+      if: always()
       with:
         xml_path: build/reports/lint-results.xml
     - name: Build with Gradle
