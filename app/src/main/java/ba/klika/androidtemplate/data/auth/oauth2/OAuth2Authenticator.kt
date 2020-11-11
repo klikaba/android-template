@@ -2,8 +2,8 @@ package ba.klika.androidtemplate.data.auth.oauth2
 
 import android.text.TextUtils
 import android.util.Log
-import androidx.annotation.NonNull
 import androidx.annotation.Nullable
+import kotlinx.coroutines.runBlocking
 
 import java.io.IOException
 
@@ -30,12 +30,12 @@ class OAuth2Authenticator
 
     @Nullable
     @Throws(IOException::class)
-    override fun authenticate(@NonNull route: Route, @NonNull response: Response): Request? {
-        val authHeader = response.request().header(AUTH_HEADER)
+    override fun authenticate(route: Route?, response: Response): Request? {
+        val authHeader = response.request.header(AUTH_HEADER)
         if (authHeader == null) {
             // Request was missing auth header and received 401
             // This is very possibly an implementation bug, since interceptor should add header to calls
-            Log.w(TAG, "Request was missing auth header! Route: " + route.toString())
+            Log.w(TAG, "Request was missing auth header! Route: $route")
             val oAuth2Token = oAuth2TokenStorage.readToken()
             return if (oAuth2Token != null) {
                 retryWithToken(response, oAuth2Token.accessToken)
@@ -78,13 +78,13 @@ class OAuth2Authenticator
 
         // refresh token
         val newToken: OAuth2Token?
-        newToken = oAuth2TokenRefresher.refreshToken()
+        newToken = runBlocking { oAuth2TokenRefresher.refreshToken() }
         // retry with new token
         return retryWithToken(response, newToken.accessToken)
     }
 
     private fun retryWithToken(response: Response, accessToken: String): Request {
-        return response.request().newBuilder()
+        return response.request.newBuilder()
                 .removeHeader(AUTH_HEADER)
                 .addHeader(AUTH_HEADER, "Bearer $accessToken")
                 .build()

@@ -4,19 +4,17 @@ import ba.klika.androidtemplate.data.auth.oauth2.OAuth2TokenApi
 import ba.klika.androidtemplate.data.auth.oauth2.OAuth2TokenStorage
 import ba.klika.androidtemplate.data.auth.oauth2.request.OAuth2RequestFactory
 import ba.klika.androidtemplate.data.base.di.module.Authenticated
-import io.reactivex.Completable
-import io.reactivex.Single
 import javax.inject.Inject
 
 /**
  * @author Ensar Sarajčić <ensar.sarajcic@klika.ba>.
  */
 interface SessionRepository {
-    fun logIn(credentials: Credentials): Completable
+    suspend fun logIn(credentials: Credentials)
 
-    fun logOut(): Completable
+    suspend fun logOut()
 
-    fun hasSession(): Single<Boolean>
+    suspend fun hasSession(): Boolean
 }
 
 class SessionRepositoryImpl
@@ -25,19 +23,15 @@ class SessionRepositoryImpl
     private val oAuth2TokenStorage: OAuth2TokenStorage,
     private val oAuth2RequestFactory: OAuth2RequestFactory
 ) : SessionRepository {
-    override fun logIn(credentials: Credentials): Completable {
-        return oAuth2TokenApi.createToken(
+    override suspend fun logIn(credentials: Credentials) {
+        oAuth2TokenApi.createToken(
                 oAuth2RequestFactory.makeCreateTokenRequest(
                         credentials.username,
                         credentials.password)
-        ).doOnSuccess {
-            oAuth2TokenStorage.saveToken(it)
-        }.toCompletable()
+        ).also { oAuth2TokenStorage.saveToken(it) }
     }
 
-    override fun logOut(): Completable = Completable.fromAction { oAuth2TokenStorage.clearToken() }
+    override suspend fun logOut() = oAuth2TokenStorage.clearToken()
 
-    override fun hasSession(): Single<Boolean> = Single.fromCallable {
-        oAuth2TokenStorage.readToken() != null
-    }
+    override suspend fun hasSession() = oAuth2TokenStorage.readToken() != null
 }

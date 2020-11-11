@@ -3,7 +3,6 @@ package ba.klika.androidtemplate.data.base.di.api
 import ba.klika.androidtemplate.data.base.config.NetworkConfig
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 /**
@@ -24,7 +23,6 @@ constructor(
         val retrofit = Retrofit.Builder()
                 .baseUrl(networkConfig.baseUrl)
                 .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .client(okHttpClient)
                 .build()
 
