@@ -35,6 +35,6 @@ jobs:
     - uses: yutailang0119/action-android-lint@v1.0.2
       if: always()
       with:
-        xml_path: build/reports/lint-results.xml
+        xml_path: app/build/reports/lint-results.xml
     - name: Build with Gradle
       run: ./gradlew build
