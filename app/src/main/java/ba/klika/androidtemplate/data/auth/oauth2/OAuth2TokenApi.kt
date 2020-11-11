@@ -2,7 +2,6 @@ package ba.klika.androidtemplate.data.auth.oauth2
 
 import ba.klika.androidtemplate.data.auth.oauth2.request.OAuth2CreateTokenRequest
 import ba.klika.androidtemplate.data.auth.oauth2.request.OAuth2RefreshTokenRequest
-import kotlinx.coroutines.flow.Flow
 import retrofit2.http.Body
 import retrofit2.http.POST
 

@@ -8,12 +8,22 @@ import ba.klika.androidtemplate.data.auth.oauth2.request.OAuth2CreateTokenReques
 import ba.klika.androidtemplate.data.auth.oauth2.request.OAuth2RequestFactory
 import ba.klika.androidtemplate.data.base.store.InMemoryKeyValueStore
 import ba.klika.androidtemplate.data.base.store.SimpleKeyValueStore
-import io.mockk.*
+import io.mockk.clearMocks
+import io.mockk.coEvery
+import io.mockk.coVerify
+import io.mockk.mockk
+import io.mockk.slot
 import junit.framework.Assert.assertNotNull
 import junit.framework.Assert.assertNull
 import kotlinx.coroutines.runBlocking
 import okio.IOException
-import org.junit.jupiter.api.*
+import org.junit.jupiter.api.AfterEach
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Nested
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
+import org.junit.jupiter.api.fail
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
@@ -36,9 +46,9 @@ internal class SessionRepositoryImplTest {
         kvStorage = InMemoryKeyValueStore()
         tokenStorage = OAuth2TokenStorage(kvStorage)
         sessionRepository = SessionRepositoryImpl(
-                mockTokenApi,
-                tokenStorage,
-                requestFactory
+            mockTokenApi,
+            tokenStorage,
+            requestFactory
         )
     }
 
@@ -150,7 +160,6 @@ internal class SessionRepositoryImplTest {
                 }
             }
         }
-
 
         @AfterEach
         internal fun tearDown() {

@@ -2,7 +2,6 @@ package ba.klika.androidtemplate.ui.splash
 
 import android.content.Intent
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.Observer
 import androidx.lifecycle.OnLifecycleEvent
 import androidx.lifecycle.ViewModel
 import ba.klika.androidtemplate.data.session.SessionRepository
@@ -40,8 +39,8 @@ class SplashActivity : BaseBoundActivity<SplashViewModel>() {
 
 class SplashViewModel
 @Inject constructor(
-        private val sessionRepository: SessionRepository,
-        dispatcherProvider: DispatcherProvider
+    private val sessionRepository: SessionRepository,
+    dispatcherProvider: DispatcherProvider
 ) : BaseViewModel(dispatcherProvider) {
 
     enum class NavigationEvent {

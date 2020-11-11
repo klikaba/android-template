@@ -27,10 +27,10 @@ class OAuth2Token(
 
     override fun toString(): String {
         return "OAuth2Token{" +
-                "expirationPeriod=" + expirationPeriod +
-                ", createdAt=" + createdAt +
-                ", accessToken='" + accessToken + '\''.toString() +
-                ", refreshToken='" + refreshToken + '\''.toString() +
-                '}'.toString()
+            "expirationPeriod=" + expirationPeriod +
+            ", createdAt=" + createdAt +
+            ", accessToken='" + accessToken + '\''.toString() +
+            ", refreshToken='" + refreshToken + '\''.toString() +
+            '}'.toString()
     }
 }

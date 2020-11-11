@@ -25,9 +25,10 @@ class SessionRepositoryImpl
 ) : SessionRepository {
     override suspend fun logIn(credentials: Credentials) {
         oAuth2TokenApi.createToken(
-                oAuth2RequestFactory.makeCreateTokenRequest(
-                        credentials.username,
-                        credentials.password)
+            oAuth2RequestFactory.makeCreateTokenRequest(
+                credentials.username,
+                credentials.password
+            )
         ).also { oAuth2TokenStorage.saveToken(it) }
     }
 

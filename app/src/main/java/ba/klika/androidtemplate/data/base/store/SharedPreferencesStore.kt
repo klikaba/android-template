@@ -69,11 +69,11 @@ class SharedPreferencesStore
     override fun readString(key: String): String? = sharedPreferences.getString(key, null)
 
     override fun readBoolean(key: String): Boolean? =
-            if (hasStored(key)) sharedPreferences.getBoolean(key, false) else null
+        if (hasStored(key)) sharedPreferences.getBoolean(key, false) else null
 
     override fun readInt(key: String): Int? =
-            if (hasStored(key)) sharedPreferences.getInt(key, 0) else null
+        if (hasStored(key)) sharedPreferences.getInt(key, 0) else null
 
     override fun readLong(key: String): Long? =
-            if (hasStored(key)) sharedPreferences.getLong(key, 0L) else null
+        if (hasStored(key)) sharedPreferences.getLong(key, 0L) else null
 }
