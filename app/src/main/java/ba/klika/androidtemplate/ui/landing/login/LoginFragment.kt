@@ -26,19 +26,25 @@ class LoginFragment : BaseBoundFragment<LoginViewModel>() {
         get() = LoginViewModel::class.java
 
     override fun bindToViewModel() {
-        viewModel.navigationTrigger.observe(viewLifecycleOwner, Observer {
-            when (it) {
-                SimpleNavigationAction.NEXT -> {
-                    activity?.startActivity(Intent(activity, MainActivity::class.java))
-                    activity?.finish()
+        viewModel.navigationTrigger.observe(
+            viewLifecycleOwner,
+            Observer {
+                when (it) {
+                    SimpleNavigationAction.NEXT -> {
+                        activity?.startActivity(Intent(activity, MainActivity::class.java))
+                        activity?.finish()
+                    }
+                    SimpleNavigationAction.BACK -> activity?.onBackPressed()
                 }
-                SimpleNavigationAction.BACK -> activity?.onBackPressed()
             }
-        })
+        )
 
-        viewModel.toastMessage.observe(viewLifecycleOwner, Observer {
-            Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
-        })
+        viewModel.toastMessage.observe(
+            viewLifecycleOwner,
+            Observer {
+                Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
+            }
+        )
     }
 }
 

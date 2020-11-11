@@ -5,7 +5,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-
 import ba.klika.androidtemplate.BR
 import ba.klika.androidtemplate.R
 import ba.klika.androidtemplate.data.country.Country
@@ -36,16 +35,20 @@ class CountriesFragment : BaseBoundFragment<CountriesViewModel>() {
         countriesList.layoutManager = LinearLayoutManager(context)
         countriesList.adapter = countriesAdapter
 
-        viewModel.countries.observe(this, Observer {
-            countries -> countriesAdapter.refreshData(countries)
-        })
+        viewModel.countries.observe(
+            this,
+            Observer {
+                countries ->
+                countriesAdapter.refreshData(countries)
+            }
+        )
 
         countriesAdapter.setRowClickListener(object : CountryRowModel.RowClickListener {
             override fun onRowClicked(country: Country) {
                 AlertDialog.Builder(context)
-                        .setTitle(country.code)
-                        .setMessage(country.name)
-                        .show()
+                    .setTitle(country.code)
+                    .setMessage(country.name)
+                    .show()
             }
         })
     }

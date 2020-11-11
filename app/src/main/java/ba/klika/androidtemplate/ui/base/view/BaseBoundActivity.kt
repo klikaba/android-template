@@ -10,8 +10,8 @@ import javax.inject.Inject
  * Base activity for all activities with viewmodels
  * @author Ensar Sarajčić <ensar.sarajcic@klika.ba>.
  */
-abstract class BaseBoundActivity<VIEW_MODEL_TYPE : BaseViewModel>
-    : BaseActivity(), BoundView<VIEW_MODEL_TYPE> {
+abstract class BaseBoundActivity<VIEW_MODEL_TYPE : BaseViewModel> :
+    BaseActivity(), BoundView<VIEW_MODEL_TYPE> {
 
     @Inject
     protected lateinit var viewModelFactory: ViewModelProvider.Factory

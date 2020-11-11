@@ -23,13 +23,16 @@ class LandingFragment : BaseBoundFragment<LandingViewModel>() {
         get() = LandingViewModel::class.java
 
     override fun bindToViewModel() {
-        viewModel.navigationTrigger.observe(viewLifecycleOwner, Observer {
-            when (it) {
-                LandingViewModel.NavigationEvent.LOGIN -> NavHostFragment.findNavController(this).navigate(R.id.action_landing_to_login)
-                LandingViewModel.NavigationEvent.REGISTRATION -> NavHostFragment.findNavController(this).navigate(R.id.action_landing_to_registration)
-                null -> { }
+        viewModel.navigationTrigger.observe(
+            viewLifecycleOwner,
+            Observer {
+                when (it) {
+                    LandingViewModel.NavigationEvent.LOGIN -> NavHostFragment.findNavController(this).navigate(R.id.action_landing_to_login)
+                    LandingViewModel.NavigationEvent.REGISTRATION -> NavHostFragment.findNavController(this).navigate(R.id.action_landing_to_registration)
+                    null -> { }
+                }
             }
-        })
+        )
     }
 }
 

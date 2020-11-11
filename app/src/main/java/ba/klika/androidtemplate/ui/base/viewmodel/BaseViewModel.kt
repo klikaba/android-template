@@ -4,7 +4,11 @@ import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import ba.klika.androidtemplate.scheduling.DispatcherProvider
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.plus
+import kotlinx.coroutines.withContext
 
 /**
  * @author Ensar Sarajčić <ensar.sarajcic@klika.ba>.

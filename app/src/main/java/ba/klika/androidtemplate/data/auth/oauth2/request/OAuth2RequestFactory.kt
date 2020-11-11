@@ -15,18 +15,18 @@ class OAuth2RequestFactory
         password: String
     ): OAuth2CreateTokenRequest {
         return OAuth2CreateTokenRequest(
-                username,
-                password,
-                clientConfig.clientId,
-                clientConfig.clientSecret
+            username,
+            password,
+            clientConfig.clientId,
+            clientConfig.clientSecret
         )
     }
 
     fun makeRefreshTokenRequest(refreshToken: String): OAuth2RefreshTokenRequest {
         return OAuth2RefreshTokenRequest(
-                refreshToken,
-                clientConfig.clientId,
-                clientConfig.clientSecret
+            refreshToken,
+            clientConfig.clientId,
+            clientConfig.clientSecret
         )
     }
 }

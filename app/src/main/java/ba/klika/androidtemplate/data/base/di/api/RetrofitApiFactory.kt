@@ -21,10 +21,10 @@ constructor(
      */
     override fun <T> buildApi(type: Class<T>): T {
         val retrofit = Retrofit.Builder()
-                .baseUrl(networkConfig.baseUrl)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(okHttpClient)
-                .build()
+            .baseUrl(networkConfig.baseUrl)
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(okHttpClient)
+            .build()
 
         return retrofit.create(type)
     }

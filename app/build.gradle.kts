@@ -90,11 +90,15 @@ tasks {
             csv.isEnabled = false
         }
         afterEvaluate {
-            classDirectories.setFrom(files(classDirectories.files.map {
-                fileTree(it) {
-                    exclude(JacocoConfig.fileFilter)
-                }
-            }))
+            classDirectories.setFrom(
+                files(
+                    classDirectories.files.map {
+                        fileTree(it) {
+                            exclude(JacocoConfig.fileFilter)
+                        }
+                    }
+                )
+            )
         }
     }
 }

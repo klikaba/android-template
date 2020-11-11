@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <!-- LANDING -->
     <string name="label_landing_welcome">Welcome</string>
     <string name="label_landing_login">Log In</string>
@@ -14,11 +14,11 @@
     <string name="label_field_password">Password</string>
 
     <!-- MENUS -->
-    <string name="label_menu_import">Import</string>
-    <string name="label_menu_gallery">Gallery</string>
-    <string name="label_menu_slideshow">Slideshow</string>
-    <string name="label_menu_tools">Tools</string>
-    <string name="label_menu_title_communicate">Communicate</string>
-    <string name="label_menu_share">Share</string>
-    <string name="lable_menu_send">Send</string>
+    <string name="label_menu_import" tools:ignore="UnusedResources">Import</string>
+    <string name="label_menu_gallery" tools:ignore="UnusedResources">Gallery</string>
+    <string name="label_menu_slideshow" tools:ignore="UnusedResources">Slideshow</string>
+    <string name="label_menu_tools" tools:ignore="UnusedResources"> Tools</string>
+    <string name="label_menu_title_communicate" tools:ignore="UnusedResources">Communicate</string>
+    <string name="label_menu_share" tools:ignore="UnusedResources">Share</string>
+    <string name="lable_menu_send" tools:ignore="UnusedResources">Send</string>
 </resources>

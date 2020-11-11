@@ -73,10 +73,11 @@ abstract class NetworkModule {
             unauthenticatedInterceptors: Set<@JvmSuppressWildcards Interceptor>,
             interceptors: Set<@JvmSuppressWildcards Interceptor>
         ): OkHttpClient = createOkHttpClient(
-        networkConfig,
-        authenticator,
-        dispatcher,
-        interceptors.union(unauthenticatedInterceptors))
+            networkConfig,
+            authenticator,
+            dispatcher,
+            interceptors.union(unauthenticatedInterceptors)
+        )
 
         @Provides
         @Singleton
@@ -91,10 +92,11 @@ abstract class NetworkModule {
             authenticatedInterceptors: Set<@JvmSuppressWildcards Interceptor>,
             interceptors: Set<@JvmSuppressWildcards Interceptor>
         ): OkHttpClient = createOkHttpClient(
-                networkConfig,
-                authenticator,
-                dispatcher,
-                interceptors.union(authenticatedInterceptors))
+            networkConfig,
+            authenticator,
+            dispatcher,
+            interceptors.union(authenticatedInterceptors)
+        )
 
         private fun createOkHttpClient(
             networkConfig: NetworkConfig,
@@ -103,16 +105,16 @@ abstract class NetworkModule {
             interceptors: Set<@JvmSuppressWildcards Interceptor>
         ): OkHttpClient {
             val builder: OkHttpClient.Builder = OkHttpClient.Builder()
-                    .authenticator(authenticator)
-                    .dispatcher(dispatcher)
+                .authenticator(authenticator)
+                .dispatcher(dispatcher)
 
             interceptors.forEach { builder.addInterceptor(it) }
 
             return builder
-                    .connectTimeout(networkConfig.connectTimeoutInMs, TimeUnit.MILLISECONDS)
-                    .readTimeout(networkConfig.readTimeoutInMs, TimeUnit.MILLISECONDS)
-                    .writeTimeout(networkConfig.writeTimeoutInMs, TimeUnit.MILLISECONDS)
-                    .build()
+                .connectTimeout(networkConfig.connectTimeoutInMs, TimeUnit.MILLISECONDS)
+                .readTimeout(networkConfig.readTimeoutInMs, TimeUnit.MILLISECONDS)
+                .writeTimeout(networkConfig.writeTimeoutInMs, TimeUnit.MILLISECONDS)
+                .build()
         }
 
         @Provides
