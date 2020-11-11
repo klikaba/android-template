@@ -22,8 +22,10 @@ jobs:
       with:
         patterns: '**/*.{kt, kts}'
     - name: Generate dummy configurations
-      run: cp app/config-example.properties debug.properties && cp app/config-example.properties release.properties
+      run: cp app/config-example.properties app/debug.properties && cp app/config-example.properties app/release.properties
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
+    - name: Android Lint with Gradle
+      run: ./gradlew lint
     - name: Build with Gradle
       run: ./gradlew build
