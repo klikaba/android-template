@@ -2,10 +2,9 @@ package ba.klika.androidtemplate.data.auth.oauth2
 
 import androidx.annotation.NonNull
 import kotlinx.coroutines.runBlocking
-import java.io.IOException
-
 import okhttp3.Interceptor
 import okhttp3.Response
+import java.io.IOException
 import javax.inject.Inject
 
 /**
@@ -39,9 +38,9 @@ class OAuth2Interceptor
             }
 
             request = request.newBuilder()
-                    .removeHeader(AUTH_HEADER)
-                    .addHeader(AUTH_HEADER, "Bearer " + oAuth2Token.accessToken)
-                    .build()
+                .removeHeader(AUTH_HEADER)
+                .addHeader(AUTH_HEADER, "Bearer " + oAuth2Token.accessToken)
+                .build()
         }
 
         return chain.proceed(request)

@@ -2,7 +2,7 @@ package ba.klika.androidtemplate.build
 
 import java.io.File
 import java.io.FileNotFoundException
-import java.util.*
+import java.util.Properties
 
 object BuildUtils {
     fun File.toProperties() = Properties().also { props ->
@@ -19,7 +19,7 @@ object BuildUtils {
     }
 
     fun loadPropertiesIntoMap(projectDir: String, buildType: String): Map<String, String> =
-            loadProperties(projectDir, buildType)
-                    .map { (key, value) -> (key as String) to (value as String) }
-                    .toMap()
+        loadProperties(projectDir, buildType)
+            .map { (key, value) -> (key as String) to (value as String) }
+            .toMap()
 }

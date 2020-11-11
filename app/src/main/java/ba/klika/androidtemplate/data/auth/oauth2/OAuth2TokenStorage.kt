@@ -31,10 +31,10 @@ class OAuth2TokenStorage
         return if (accessToken == null || refreshToken == null) {
             null
         } else OAuth2Token(
-                simpleKeyValueStore.readLong(EXPIRATION_PERIOD_KEY, 0L),
-                simpleKeyValueStore.readLong(CREATED_AT_KEY, 0L),
-                accessToken,
-                refreshToken
+            simpleKeyValueStore.readLong(EXPIRATION_PERIOD_KEY, 0L),
+            simpleKeyValueStore.readLong(CREATED_AT_KEY, 0L),
+            accessToken,
+            refreshToken
         )
     }
 

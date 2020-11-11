@@ -1,8 +1,7 @@
 package ba.klika.androidtemplate.ui.main.country.list
 
-import java.util.ArrayList
-
 import ba.klika.androidtemplate.data.country.Country
+import java.util.ArrayList
 
 /**
  * @author Ensar Sarajčić <ensar.sarajcic@klika.ba>.

@@ -8,7 +8,11 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.runBlocking
 import okio.IOException
-import org.junit.jupiter.api.*
+import org.junit.jupiter.api.AfterEach
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Nested
+import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
@@ -20,8 +24,8 @@ internal class ApiCountriesRepositoryTest {
     @BeforeEach
     fun setUp() {
         countriesRepository = ApiCountriesRepository(
-                mockCountriesApi,
-                mockCountriesDao
+            mockCountriesApi,
+            mockCountriesDao
         )
     }
 
@@ -35,8 +39,8 @@ internal class ApiCountriesRepositoryTest {
     @DisplayName("Given working CountriesApi")
     inner class WorkingApi {
         val apiCountries = arrayListOf(
-                Country("BiH", "BA"),
-                Country("USA", "US")
+            Country("BiH", "BA"),
+            Country("USA", "US")
         )
 
         @BeforeEach

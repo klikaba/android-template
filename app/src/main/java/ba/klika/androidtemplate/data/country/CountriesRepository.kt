@@ -25,11 +25,11 @@ class ApiCountriesRepository
 ) : CountriesRepository {
     override fun all(): Flow<List<Country>> = flow {
         countriesDao.runCatching { countries() }
-                .onSuccess {
-                    emit(it)
-                }.onFailure {
-                    emit(listOf<Country>())
-                }
+            .onSuccess {
+                emit(it)
+            }.onFailure {
+                emit(listOf<Country>())
+            }
         emit(countriesApi.all().countries.also { countriesDao.insertCountries(it) })
     }
 }

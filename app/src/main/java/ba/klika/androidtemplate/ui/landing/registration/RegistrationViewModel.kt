@@ -17,9 +17,9 @@ import javax.inject.Inject
  */
 class RegistrationViewModel
 @Inject constructor(
-        private val userRepository: UserRepository,
-        private val sessionRepository: SessionRepository,
-        dispatcherProvider: DispatcherProvider
+    private val userRepository: UserRepository,
+    private val sessionRepository: SessionRepository,
+    dispatcherProvider: DispatcherProvider
 ) : BaseViewModel(dispatcherProvider) {
 
     val username = MutableLiveData<String>()

@@ -20,27 +20,29 @@ import javax.inject.Singleton
 /**
  * @author Ensar Sarajčić <ensar.sarajcic@klika.ba>.
  */
-@Component(modules = [
-    // Android
-    AndroidSupportInjectionModule::class,
-    AndroidSchedulingModule::class,
+@Component(
+    modules = [
+        // Android
+        AndroidSupportInjectionModule::class,
+        AndroidSchedulingModule::class,
 
-    // Application
-    AppModule::class,
-    ActivityBuilder::class,
-    ViewModelFactoryModule::class,
+        // Application
+        AppModule::class,
+        ActivityBuilder::class,
+        ViewModelFactoryModule::class,
 
-    // Config
-    AppConfigModule::class,
+        // Config
+        AppConfigModule::class,
 
-    // Data
-    NetworkModule::class,
-    CacheModule::class,
-    OAuth2Module::class,
-    SessionModule::class,
-    CountriesDataModule::class,
-    UserDataModule::class
-])
+        // Data
+        NetworkModule::class,
+        CacheModule::class,
+        OAuth2Module::class,
+        SessionModule::class,
+        CountriesDataModule::class,
+        UserDataModule::class
+    ]
+)
 @Singleton
 interface AppComponent : AndroidInjector<App> {
 

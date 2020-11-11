@@ -1,14 +1,11 @@
 package ba.klika.androidtemplate.ui.main.country
 
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
 import ba.klika.androidtemplate.data.country.CountriesRepository
 import ba.klika.androidtemplate.data.country.Country
 import ba.klika.androidtemplate.scheduling.DispatcherProvider
 import ba.klika.androidtemplate.ui.base.viewmodel.BaseViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.plus
 import java.lang.Exception
 import javax.inject.Inject
@@ -18,8 +15,8 @@ import javax.inject.Inject
  */
 class CountriesViewModel
 @Inject constructor(
-        private val countriesRepository: CountriesRepository,
-        dispatcherProvider: DispatcherProvider
+    private val countriesRepository: CountriesRepository,
+    dispatcherProvider: DispatcherProvider
 ) : BaseViewModel(dispatcherProvider) {
 
     val countries = MutableLiveData<List<Country>>()

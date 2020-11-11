@@ -2,12 +2,10 @@ package ba.klika.androidtemplate.ui.main.country.list
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-
-import java.util.ArrayList
-
 import androidx.recyclerview.widget.RecyclerView
 import ba.klika.androidtemplate.data.country.Country
 import ba.klika.androidtemplate.databinding.ItemCountryBinding
+import java.util.ArrayList
 
 /**
  * @author Ensar Sarajčić <ensar.sarajcic@klika.ba>.

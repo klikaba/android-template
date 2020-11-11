@@ -30,18 +30,18 @@ class ApiUserRepository
 ) : UserRepository {
     override fun get(id: Int): Flow<User> = flow {
         usersDao.runCatching { user(id) }
-                .onSuccess {
-                    emit(it)
-                }.onFailure {
-                    emit(User(0, "", Date(), Date(), "no-role"))
-                }
+            .onSuccess {
+                emit(it)
+            }.onFailure {
+                emit(User(0, "", Date(), Date(), "no-role"))
+            }
         emit(userApi.user(id).also { usersDao.insertUser(it) })
     }
 
     override suspend fun create(registrationInfo: RegistrationInfo): User =
-            userApi.create(UserCreationRequest(registrationInfo)).also {
-               usersDao.insertUser(it)
-            }
+        userApi.create(UserCreationRequest(registrationInfo)).also {
+            usersDao.insertUser(it)
+        }
 }
 
 interface UserApi {

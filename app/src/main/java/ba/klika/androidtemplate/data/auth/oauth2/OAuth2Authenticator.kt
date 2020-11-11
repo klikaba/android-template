@@ -4,13 +4,11 @@ import android.text.TextUtils
 import android.util.Log
 import androidx.annotation.Nullable
 import kotlinx.coroutines.runBlocking
-
-import java.io.IOException
-
 import okhttp3.Authenticator
 import okhttp3.Request
 import okhttp3.Response
 import okhttp3.Route
+import java.io.IOException
 import javax.inject.Inject
 
 /**
@@ -85,9 +83,9 @@ class OAuth2Authenticator
 
     private fun retryWithToken(response: Response, accessToken: String): Request {
         return response.request.newBuilder()
-                .removeHeader(AUTH_HEADER)
-                .addHeader(AUTH_HEADER, "Bearer $accessToken")
-                .build()
+            .removeHeader(AUTH_HEADER)
+            .addHeader(AUTH_HEADER, "Bearer $accessToken")
+            .build()
     }
 
     companion object {
