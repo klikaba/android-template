@@ -4,8 +4,8 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import io.reactivex.Flowable
-import io.reactivex.Single
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -18,8 +18,8 @@ import javax.inject.Singleton
  * @author Ensar Sarajčić <ensar.sarajcic@klika.ba>.
  */
 interface UserRepository {
-    fun get(id: Int): Flowable<User>
-    fun create(registrationInfo: RegistrationInfo): Single<User>
+    fun get(id: Int): Flow<User>
+    suspend fun create(registrationInfo: RegistrationInfo): User
 }
 
 @Singleton
@@ -28,24 +28,28 @@ class ApiUserRepository
     private val userApi: UserApi,
     private val usersDao: UsersDao
 ) : UserRepository {
-    override fun get(id: Int): Flowable<User> {
-        return usersDao.user(id)
-                // For now, return fake data when cache is empty
-                .onErrorReturnItem(User(0, "", Date(), Date(), "no-role"))
-                .concatWith { userApi.user(id) }
+    override fun get(id: Int): Flow<User> = flow {
+        usersDao.runCatching { user(id) }
+                .onSuccess {
+                    emit(it)
+                }.onFailure {
+                    emit(User(0, "", Date(), Date(), "no-role"))
+                }
+        emit(userApi.user(id).also { usersDao.insertUser(it) })
     }
 
-    override fun create(registrationInfo: RegistrationInfo): Single<User> {
-        return userApi.create(UserCreationRequest(registrationInfo)).doOnSuccess(usersDao::insertUser)
-    }
+    override suspend fun create(registrationInfo: RegistrationInfo): User =
+            userApi.create(UserCreationRequest(registrationInfo)).also {
+               usersDao.insertUser(it)
+            }
 }
 
 interface UserApi {
     @POST("api/v1/users")
-    fun create(@Body userCreationRequest: UserCreationRequest): Single<User>
+    suspend fun create(@Body userCreationRequest: UserCreationRequest): User
 
     @GET("api/v1/users/{id}")
-    fun user(@Path("id") id: Int): Single<User>
+    suspend fun user(@Path("id") id: Int): User
 }
 
 @Dao
@@ -55,7 +59,7 @@ interface UsersDao {
     fun insertUser(user: User)
 
     @Query("SELECT * FROM user WHERE id = :id")
-    fun user(id: Int): Single<User>
+    suspend fun user(id: Int): User
 }
 
 data class UserCreationRequest(val user: RegistrationInfo)

@@ -2,7 +2,7 @@ package ba.klika.androidtemplate.data.auth.oauth2
 
 import ba.klika.androidtemplate.data.auth.oauth2.request.OAuth2CreateTokenRequest
 import ba.klika.androidtemplate.data.auth.oauth2.request.OAuth2RefreshTokenRequest
-import io.reactivex.Single
+import kotlinx.coroutines.flow.Flow
 import retrofit2.http.Body
 import retrofit2.http.POST
 
@@ -13,8 +13,8 @@ import retrofit2.http.POST
 interface OAuth2TokenApi {
 
     @POST("oauth/token")
-    fun createToken(@Body createTokenRequest: OAuth2CreateTokenRequest): Single<OAuth2Token>
+    suspend fun createToken(@Body createTokenRequest: OAuth2CreateTokenRequest): OAuth2Token
 
     @POST("oauth/token")
-    fun refreshToken(@Body refreshTokenRequest: OAuth2RefreshTokenRequest): Single<OAuth2Token>
+    suspend fun refreshToken(@Body refreshTokenRequest: OAuth2RefreshTokenRequest): OAuth2Token
 }

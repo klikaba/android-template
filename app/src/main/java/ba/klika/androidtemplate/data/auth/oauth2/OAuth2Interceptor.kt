@@ -1,6 +1,7 @@
 package ba.klika.androidtemplate.data.auth.oauth2
 
 import androidx.annotation.NonNull
+import kotlinx.coroutines.runBlocking
 import java.io.IOException
 
 import okhttp3.Interceptor
@@ -20,11 +21,11 @@ class OAuth2Interceptor
 ) : Interceptor {
 
     @Throws(IOException::class)
-    override fun intercept(@NonNull chain: Interceptor.Chain): Response? {
+    override fun intercept(@NonNull chain: Interceptor.Chain): Response {
         var request = chain.request()
 
         // Ignore token calls to prevent loops
-        if (request.url().toString().contains("oauth/token")) {
+        if (request.url.toString().contains("oauth/token")) {
             return chain.proceed(request)
         }
 
@@ -34,7 +35,7 @@ class OAuth2Interceptor
         if (oAuth2Token != null) {
             // has token expired?
             if (oAuth2Token.expired()) {
-                oAuth2Token = oAuth2TokenRefresher.refreshToken()
+                oAuth2Token = runBlocking { oAuth2TokenRefresher.refreshToken() }
             }
 
             request = request.newBuilder()
