@@ -2,4 +2,5 @@
 overcommit --install
 overcommit --sign
 overcommit --sign pre-commit
-brew tap shyiko/ktlint && brew install shyiko/ktlint/ktlint
+overcommit --sign pre-push
+brew install ktlint
