@@ -2,7 +2,9 @@
 buildscript {
     repositories {
         google()
-        jcenter()
+        maven("https://maven.google.com")
+        maven("https://plugins.gradle.org/m2/")
+        mavenCentral()
     }
     dependencies {
         classpath(Dependencies.Gradle.androidGradlePlugin)
@@ -15,7 +17,8 @@ buildscript {
 allprojects {
     repositories {
         google()
-        jcenter()
+        maven("https://maven.google.com")
+        mavenCentral()
     }
 }
 

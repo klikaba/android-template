@@ -3,7 +3,7 @@ import org.gradle.api.JavaVersion
 object Dependencies {
     object Language {
         object Versions {
-            const val kotlinVersion = "1.4.10"
+            const val kotlinVersion = "1.7.10"
             val javaSourceCompatibility = JavaVersion.VERSION_1_8
             val javaTargetCompatibility = JavaVersion.VERSION_1_8
             const val kotlinCoroutinesVersion = "1.4.0-M1"
@@ -15,7 +15,7 @@ object Dependencies {
 
     object Gradle {
         object Versions {
-            const val androidGradlePluginVersion = "4.1.0"
+            const val androidGradlePluginVersion = "7.3.1"
         }
         const val androidGradlePlugin = "com.android.tools.build:gradle:${Versions.androidGradlePluginVersion}"
     }
@@ -30,15 +30,15 @@ object Dependencies {
             const val androidLifecycleVersion = "2.2.0"
             const val constraintLayoutVersion = "2.0.2"
             const val archComponentsVersion = "2.1.0"
-            const val navigationVersion = "2.3.1"
+            const val navigationVersion = "2.5.2"
         }
         const val androidLifecycleCompiler = "androidx.lifecycle:lifecycle-compiler:${Versions.androidLifecycleVersion}"
         const val appCompat = "androidx.appcompat:appcompat:${Versions.appCompatVersion}"
         const val constraintLayout = "androidx.constraintlayout:constraintlayout:${Versions.constraintLayoutVersion}"
         const val androidAnnotation = "androidx.annotation:annotation:${Versions.androidAnnotationVersion}"
         const val androidXActivity = "androidx.activity:activity-ktx:${Versions.androidXActivity}"
-        const val navigationFragment = "android.arch.navigation:navigation-fragment-ktx:${Versions.navigationVersion}"
-        const val navigationUi = "android.arch.navigation:navigation-ui-ktx:${Versions.navigationVersion}"
+        const val navigationFragment = "androidx.navigation:navigation-fragment-ktx:${Versions.navigationVersion}"
+        const val navigationUi = "androidx.navigation:navigation-ui-ktx:${Versions.navigationVersion}"
         const val recyclerView = "androidx.recyclerview:recyclerview:${Versions.recyclerViewVersion}"
         const val googleMaterial = "com.google.android.material:material:${Versions.googleMaterialVersion}"
         const val androidLifecycleExtensions = "androidx.lifecycle:lifecycle-extensions:${Versions.androidLifecycleVersion}"
@@ -58,7 +58,7 @@ object Dependencies {
 
     object Database {
         object Versions {
-            const val roomVersion = "2.1.0"
+            const val roomVersion = "2.4.3"
         }
         const val roomCompiler = "androidx.room:room-compiler:${Versions.roomVersion}"
         const val roomRuntime = "androidx.room:room-runtime:${Versions.roomVersion}"
