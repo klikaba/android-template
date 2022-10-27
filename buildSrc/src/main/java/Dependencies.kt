@@ -48,7 +48,7 @@ object Dependencies {
 
     object Networking {
         object Versions {
-            const val okhttp3Version = "4.9.0"
+            const val okhttp3Version = "4.10.0"
             const val retrofit2Version = "2.9.0"
         }
         const val okHttp3 = "com.squareup.okhttp3:okhttp:${Versions.okhttp3Version}"
