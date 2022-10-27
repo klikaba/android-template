@@ -84,4 +84,4 @@ We are using [JUnit5 Framework](https://junit.org/junit5/docs/current/user-guide
 
 ## Maintainers
 
-- [Ensar Sarajcic](https://github.com/esensar)
+- [Tibor Jevicki](https://github.com/tjevicki)
