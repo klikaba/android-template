@@ -15,11 +15,11 @@ tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile::class).configure
 }
 
 android {
-    compileSdkVersion(AndroidConfig.Versions.androidCompileSdkVersion)
+    compileSdk = AndroidConfig.Versions.androidCompileSdkVersion
     defaultConfig {
         applicationId = "ba.klika.androidtemplate"
-        minSdkVersion(AndroidConfig.Versions.androidMinSdkVersion)
-        targetSdkVersion(AndroidConfig.Versions.androidTargetSdkVersion)
+        minSdk = AndroidConfig.Versions.androidMinSdkVersion
+        targetSdk = AndroidConfig.Versions.androidTargetSdkVersion
         versionCode = 1
         versionName = "1.0"
     }
