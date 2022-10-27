@@ -83,7 +83,7 @@ object Dependencies {
 
     object Other {
         object Versions {
-            const val gsonVersion = "2.8.2"
+            const val gsonVersion = "2.10"
         }
         const val gson = "com.google.code.gson:gson:${Versions.gsonVersion}"
     }
